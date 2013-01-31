@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Tutorial</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="jquery-hashchange.min.js"></script>
+    <script src="editor.js"></script>
+</head>
+<body>
+<div id="editor"></div>
+<div id="right">
+    <div id="info">
+        <button id="run">Run</button>
+        <button id="clear">Clear Output</button>
+        <div id="loader">
+            <button id="prev" disabled="disabled">Previous</button>
+            <button id="next">Next</button>
+        </div>
+        <h1 id="title">JavaScript Editor</h1>
+        <div id="description">
+            Write code on the left panel and press run.<br>
+            To output, use print() or println() functions.<br>
+            <small><em>
+                Set this description and its title using @desc
+                and @title in your code.
+            </em></small>
+        </div>
+    </div>
+    <div id="output"><ol></ul></div>
+</div>
+</body>
+</html>

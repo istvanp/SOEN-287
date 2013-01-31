@@ -1,0 +1,55 @@
+body {
+    background: #321;
+    color: #fff;
+    font: normal 16px Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+#editor {
+    background: #222;
+    bottom: 0;
+    border: 0;
+    font: normal 16px 'Menlo', monospace;
+    left: 0;
+    position: absolute;
+    right: 50%;
+    top: 0;
+}
+#right {
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#info {
+    margin: 10px 20px;
+}
+    #info button {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+    #loader {
+        float: right;
+    }
+    #title {
+        color: #fc0;
+    }
+    #description {
+        font: bold 16px 'Menlo', monospace;
+    }
+#output {
+    background: #222;
+    padding: 20px;
+    color: #fff;
+    font: normal 22px 'Menlo', monospace;
+    overflow: scroll;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 200px;
+}
+    #output ol {
+        margin: 0;
+        white-space: pre;
+    }
