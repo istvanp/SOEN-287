@@ -1,5 +1,7 @@
 jQuery(function() {
-    var slide = null, editor = ace.edit("editor");
+    var slide = null, editor = ace.edit("editor"),
+        titleRE = /@title ?(.*)\n/,
+        descRE  = /@desc ?(.*)\n/;
     editor.setTheme("ace/theme/tomorrow_night");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWrapMode(true);
@@ -10,11 +12,11 @@ jQuery(function() {
     }
 
     var update = function(e) {
-        var code   = editor.getValue();
-            title  = code.match(/@title (.+)/),
-            desc   = code.match(/@desc (.+)/),
-            $title = $('#title'),
-            $desc  = $('#description');
+        var code    = editor.getValue();
+            title   = code.match(titleRE),
+            desc    = code.match(descRE),
+            $title  = $('#title'),
+            $desc   = $('#description');
 
         if (title) {
             $title.html(title[1]);
@@ -82,6 +84,7 @@ jQuery(function() {
                 editor.setValue(code);
                 editor.gotoLine(1);
                 $('#prev').prop('disabled', false);
+                $('#next').prop('disabled', false);
                 $('#clear').trigger('click');
             },
             error: function(e) {
@@ -95,6 +98,9 @@ jQuery(function() {
 });
 
 function print(str) {
+    if (typeof str == 'undefined') {
+        str = '';
+    }
     if ($('#output li').length === 0)
     {
        println(str);
@@ -104,6 +110,9 @@ function print(str) {
 }
 
 function println(str) {
+    if (typeof str == 'undefined') {
+        str = '';
+    }
     $('#output ol').append('<li>' + str + '</li>');
 }
 
