@@ -1,7 +1,7 @@
 // @title Data Types: Boolean
+// @desc Always false: false, 0, "", null, undefined, NaN
 
-var bool1  = true;
-var bool2  = 10 < 10; // Expression returning a boolean
-
-document.writeln(bool1);
-document.writeln(bool2);
+document.writeln(true);
+document.writeln(Boolean("0"));
+document.writeln(!! "0");
+document.writeln(10 < 10); // Expression returning a boolean
