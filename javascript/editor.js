@@ -30,7 +30,9 @@ jQuery(function() {
             $desc.html('');
         }
 
-        sessionStorage['code'] = code;
+        if (slide) {
+            sessionStorage[slide] = code;
+        }
     };
     editor.getSession().on('change', update);
 
@@ -78,9 +80,17 @@ jQuery(function() {
             return;
         }
 
+        if (sessionStorage[slide])
+        {
+            editor.setValue(sessionStorage[slide]);
+            editor.gotoLine(1);
+            return;
+        }
+
         $.ajax({
             url: 'slides/' + slide + '.js',
             success: function(code) {
+                sessionStorage[slide] = code;
                 editor.setValue(code);
                 editor.gotoLine(1);
                 $('#prev').prop('disabled', false);
