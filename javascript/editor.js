@@ -79,6 +79,9 @@ jQuery(function() {
             $('#clear').trigger('click');
             return;
         }
+        if (slide > 0) {
+            $('#prev').prop('disabled', false);
+        }
 
         if (sessionStorage[slide])
         {
@@ -93,7 +96,6 @@ jQuery(function() {
                 sessionStorage[slide] = code;
                 editor.setValue(code);
                 editor.gotoLine(1);
-                $('#prev').prop('disabled', false);
                 $('#next').prop('disabled', false);
                 $('#clear').trigger('click');
             },
