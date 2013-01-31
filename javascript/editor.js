@@ -111,7 +111,7 @@ jQuery(function() {
 });
 
 function print(str) {
-    if (typeof str == 'undefined') {
+    if (arguments.length == 0) {
         str = '';
     }
     if ($('#output li').length === 0)
@@ -123,7 +123,7 @@ function print(str) {
 }
 
 function println(str) {
-    if (typeof str == 'undefined') {
+    if (arguments.length == 0) {
         str = '';
     }
     $('#output ol').append('<li>' + str + '</li>');
