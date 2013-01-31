@@ -40,6 +40,7 @@ jQuery(function() {
         var code = editor.getValue();
         code = code.replace(/document\.write/g, 'print');
         code = code.replace(/document\.writeln/g, 'println');
+        $('#clear').trigger('click');
         try {
             (new Function(code)).call();
         } catch(e) {
