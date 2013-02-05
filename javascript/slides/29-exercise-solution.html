@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>JavaScript Exercise Solution</title>
+</head>
+<body>
+<script type="text/javascript">
+    var sum = 0,
+        total = parseInt(prompt('How many data points do you want to calculate the sum of?'));
+
+    for (var i = 1; i <= total; i++) {
+        sum += parseFloat(prompt('Enter data point ' + i + '/' + total));
+    }
+    alert("The sum is " + sum);
+</script>
+</body>
+</html>
