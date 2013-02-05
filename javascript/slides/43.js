@@ -1,23 +1,6 @@
-// @title Nested functions and closures
+// @title Functions: declaration
+// @desc Function Constructor<br><code>new Function ([arg1[, arg2[, ... argN]],] functionBody)</code> where <code>functionBody</codE> is a string.
 
-// Nested function
-function addSquares(a, b) {
-    function square(x) {
-        return x * x;
-    }
-    return square(a) + square(b);
-}
+var multiply = new Function("x", "y", "return x * y;");
 
-document.writeln(addSquares(2, 4));
-
-// Closure
-function outside(x) {
-    function inside(y) {
-        return x + y;
-    }
-    return inside;
-}
-
-fnInside = outside(3);
-document.writeln(fnInside(5));
-document.writeln(outside(3)(5));
+document.writeln(multiply(2, 3));

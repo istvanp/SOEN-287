@@ -4,6 +4,10 @@ body {
     font: normal 16px Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+a {
+    color: #fff;
+    text-decoration: underline;
+}
 #editor {
     background: #222;
     bottom: 0;
@@ -57,4 +61,5 @@ code {
     background: #111;
     color: #fc0;
     padding: 1px 4px;
+    white-space: pre-wrap;
 }

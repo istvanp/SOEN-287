@@ -98,7 +98,7 @@ jQuery(function() {
             $desc   = $('#description');
 
         if (title) {
-            $title.html(title[1]);
+            $title.html(slide + '. ' + title[1]);
         } else {
             $title.html('');
         }

@@ -1,40 +1,17 @@
-// @title Anonymous functions
-// @desc Also called Lambda functions
+// @title Functions: return
+// @desc Function can return a value
 
-try {
-    functionExpression();
-} catch(e) {
-    document.writeln(e); // Defined later only!
-}
-
-
-var functionExpression = function() {
-    document.writeln('function expression');
-};
-
-functionExpression();
-
-window.windowFunction = function() {
-    document.writeln('window function'); //  attached explicitly to window
-};
-
-windowFunction();
-
-var namedFunctionExpression = function testFunc(val) {
-    document.writeln('function expression');
-    if (val) {
-        return;
-    } else {
-        testFunc('some value');
+// A recursive function
+function fibonacci(n) {
+    if (n === 0) {
+        return 0;
     }
-};
-
-try {
-    testFunc();
-} catch(e) {
-    document.writeln(e);
+    else if (n == 1) {
+        return 1;
+    }
+    else {
+        return (fibonacci(n-1) + fibonacci(n-2));
+    }
 }
 
-(function() {
-    document.writeln('A function expression, called immediately.');
-}()); // Notice the ()
+document.writeln(fibonacci(8));
