@@ -6,7 +6,7 @@ jQuery(function() {
         descRE  = /@desc ?(.*)\n/;
 
     // Set code editor options
-    editor.setTheme("ace/theme/tomorrow_night");
+    editor.setTheme("ace/theme/solarized_light");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWrapMode(true);
 
