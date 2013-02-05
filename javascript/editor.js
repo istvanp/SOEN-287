@@ -1,14 +1,22 @@
 jQuery(function() {
-    var slide = null, editor = ace.edit("editor"),
+    var slide = null, save = false,
+        $autorun = $('#autorun')
+        editor = ace.edit("editor"),
         titleRE = /@title ?(.*)\n/,
         descRE  = /@desc ?(.*)\n/;
     editor.setTheme("ace/theme/tomorrow_night");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWrapMode(true);
 
-    if (sessionStorage['code']) {
+    if (save && sessionStorage['code']) {
         editor.setValue(sessionStorage['code']);
         editor.gotoLine(1);
+    }
+
+    if (sessionStorage['autorun'] == 1) {
+        $autorun.prop('checked', true);
+    } else {
+        $autorun.prop('checked', false);
     }
 
     var update = function(e) {
@@ -32,6 +40,10 @@ jQuery(function() {
 
         if (slide) {
             sessionStorage[slide] = code;
+        }
+
+        if ($autorun.prop('checked')) {
+            $('#run').trigger('click');
         }
     };
     editor.getSession().on('change', update);
@@ -60,13 +72,18 @@ jQuery(function() {
         window.location.hash = --slide;
     });
 
+    $autorun.on('change', function() {
+        console.log($(this).prop('checked'));
+        sessionStorage['autorun'] = 0 + $(this).prop('checked');
+    });
+
     $(window).hashchange(function() {
         var hash = location.hash;
         var slideResult = hash.match(/#(\d+)/);
         if ( ! slideResult) {
             window.location.hash = '0';
             return;
-        };
+        }
         slide = slideResult[1];
         if (slide < 0) {
             window.location.hash = '0';
@@ -84,7 +101,7 @@ jQuery(function() {
             $('#prev').prop('disabled', false);
         }
 
-        if (sessionStorage[slide])
+        if (save && sessionStorage[slide])
         {
             editor.setValue(sessionStorage[slide]);
             editor.gotoLine(1);

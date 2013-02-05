@@ -24,7 +24,7 @@ body {
 #info {
     margin: 10px 20px;
 }
-    #info button {
+    #info button, #info input {
         font-size: 20px;
         margin-right: 10px;
     }
