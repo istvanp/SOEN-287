@@ -154,7 +154,7 @@ function print(str) {
     {
        println(str);
     } else {
-        $('#output li').last().append(str);
+        $('#output li').last().children('span').append(str);
     }
 }
 
@@ -163,10 +163,10 @@ function println(str) {
     if (arguments.length == 0) {
         str = '';
     }
-    $('#output ol').append('<li>' + str + '</li>');
+    $('#output ol').append('<li><span>' + str + '</span></li>');
 }
 
 // Output an error
 function error(str) {
-    $('#output ol').append('<li style="color: red">' + str + '</li>');
+    $('#output ol').append('<li><span style="color: red">' + str + '</span></li>');
 }

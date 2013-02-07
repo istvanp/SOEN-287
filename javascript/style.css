@@ -44,18 +44,21 @@ a {
 #output {
     background: #222;
     padding: 20px;
-    color: #fff;
+    color: #999;
     font: normal 22px 'Menlo', monospace;
     overflow: scroll;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    top: 200px;
+    top: 250px;
 }
     #output ol {
         margin: 0;
         white-space: pre;
+    }
+    #output span {
+        color: #fff;
     }
 code {
     background: #111;
