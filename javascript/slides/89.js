@@ -1,5 +1,5 @@
 // @title Regular Expressions: match preceding character n to m times
-// @desc Use <code>{n,m}</code> where <code>n</code> is the minimum number of occurrences and <code>m</code> is the maximum number of occurrences.
+// @desc Use <code>{n,m}</code> to match at least <code>n</code> times and at most <code>m</code> times the preceding character.
 
 var re = /ab{2,3}c/;
 
