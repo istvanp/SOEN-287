@@ -135,8 +135,10 @@ jQuery(function() {
     // Init auto-run status
     if (sessionStorage['autorun'] == 1) {
         $autorun.prop('checked', true);
-    } else {
+    } else if (sessionStorage['autorun'] == 0) {
         $autorun.prop('checked', false);
+    } else {
+        $autorun.prop('checked', true);
     }
 
     // Init the slide
