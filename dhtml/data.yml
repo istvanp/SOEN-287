@@ -1,0 +1,7 @@
+- title: Get element by ID
+  jsbin: esexic/6
+  desc: You can retrieve a DOM Element by its ID by using
+        `document.getElementById("id")`.
+- title: innerHTML property of DOM Elements
+  jsbin: ojepun/4
+  desc: Use `domNode.innerHTML` to either read or write new HTML to a DOM node.
