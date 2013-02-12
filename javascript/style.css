@@ -51,11 +51,11 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    top: 250px;
+    top: 275px;
 }
     #output ol {
         margin: 0;
-        white-space: pre;
+        white-space: pre-wrap;
     }
     #output span {
         color: #fff;
