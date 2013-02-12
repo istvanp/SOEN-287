@@ -1,7 +1,24 @@
 - title: Get element by ID
-  jsbin: esexic/6
+  jsbin: esexic/7
   desc: You can retrieve a DOM Element by its ID by using
         `document.getElementById("id")`.
 - title: innerHTML property of DOM Elements
-  jsbin: ojepun/4
+  jsbin: ojepun/7
   desc: Use `domNode.innerHTML` to either read or write new HTML to a DOM node.
+- title: Accessing style attributes via the DOM
+  jsbin: ukehux/5
+  desc: "Use `domNode.style.property` to read or write a CSS property.
+
+         For dashed properties, like `background-color`, you must convert the property name to lowerCamelCase: `backgroundColor`."
+- title: Accessing form data via `document.forms`
+  jsbin: iqikim/7
+  desc:  All forms inside of a document are represented in `document.forms` as an array.
+         Index 0 represents the very first `<form>` seen in the document, 1 the second, and so on.
+         If the form element contained inside a form tag has a name,
+         it is accessible using that name as the index or using dot notation. Otherwise it can be accessed via `document.forms[n].elements[m]`.
+         Finally, to access the value of an input field, you can use the `value` property.
+- title: Select boxes, checkboxes and radio buttons
+  jsbin: acaheg/4
+  desc: Checkboxes and radio buttons have a checked state.
+  
+        Select boxes have a selected state instead on the `option` tags (`options` property).

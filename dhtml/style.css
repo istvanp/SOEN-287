@@ -27,14 +27,16 @@ code {
 	margin: 20px;
 }
 #jsbin {
-	border: 0;
 	position: absolute;
 	top: 200px;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	width: 100%;
+}
+iframe {
+	border: 0;
 	height: 100%;
+	width: 100%;
 }
 #controls {
 	float: right;

@@ -45,21 +45,34 @@ jQuery(function() {
         if (data[slide - 1]) {
             var title = data[slide - 1].title,
                 desc = data[slide - 1].desc,
-                jsbin = data[slide - 1].jsbin;
+                jsbin = data[slide - 1].jsbin,
+                re = /`([^`]*)`/g,
+                replacement = '<code class="prettyprint">$1</code>';
 
-            title = slide + ". " + title;
+            title = title.replace(/&/g,'&amp;')
+                         .replace(/</g,'&lt;')
+                         .replace(/>/g,'&gt;')
+                         .replace(re, replacement);
+            title = slide + ". " + (title || 'No title');
             if (desc) {
-                desc = desc.replace(/\`(.*)\`/g, '<code class="prettyprint">$1</code>');
+                desc = desc.replace(/&/g,'&amp;')
+                           .replace(/</g,'&lt;')
+                           .replace(/>/g,'&gt;')
+                           .replace("\n", "<br>")
+                           .replace(re, replacement);
             }
 
             $title.html(title);
-            $desc.html(desc);
+            $desc.html(desc || '');
             $iframe.attr('src', 'http://jsbin.com/' + jsbin + '/edit');
             prettyPrint();
         }
         if ( ! data[slide])
         {
             $('#next').prop('disabled', true);
+        }
+        else {
+            $('#next').prop('disabled', false);
         }
     });
 });
