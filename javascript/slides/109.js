@@ -1,8 +1,9 @@
-// @title Special variables: document
-// @desc <code>document</code> contains a reference to the current HTML document.
+// @title Special variables: history
+// @desc <code>window.history</code> allows you to navigate to a page in the browser's history.<br><code>back()</code>, <code>forward()</code>, <code>go(n)</code> are the common methods.
 
-// Open your browser's console to view details about document
-console.log(document);
+if (confirm("Go back?")) {
+    window.history.back();
+}
 
-// innerHTML is a property of any DOM Element and returns the (HTML) content of the element.
-console.log(document.body.innerHTML);
+// Equivalent:
+// window.history.go(-1); // Where the paramater given is an integer of how many pages to go back or forward.
