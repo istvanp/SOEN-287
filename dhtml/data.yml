@@ -137,7 +137,7 @@
         
         `change` is executed when the input field has changed value since it gained focus and is now losing focus (blur).
 - title: "Window & body events: `onload`, `onunload`"
-  jsbin: ocohom/2
+  jsbin: ocohom/3
   desc: |
         `onload` will fire when the page has finished loading.
         
