@@ -235,7 +235,7 @@
         <a href="https://developer.mozilla.org/en-US/docs/DOM/element" target="_blank">
         Full DOM Element Reference &raquo;</a>
 - title: "DOM manipulation: `createElement`, `appendChild`"
-  jsbin: exocic/4
+  jsbin: exocic/3
   desc: |
         Creating new elements programatically is done using
         `newElement = document.createElement("tagName")` and then add it as a child to a parent

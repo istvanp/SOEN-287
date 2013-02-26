@@ -101,7 +101,7 @@ callback(
     "desc": "All DOM elements have tree traversing properties. They are:\n<ul>\n    <li>childNodes</li>\n    <li>children</li>\n    <li>firstChild</li>\n    <li>innerHTML</li>\n    <li>lastChild</li>\n    <li>nextSibling</li>\n    <li>nodeName</li>\n    <li>nodeType</li>\n    <li>nodeValue</li>\n    <li>parentNode</li>\n    <li>previousSibling</li>\n</ul>\nand methods:\n<ul>\n    <li>hasChildNodes()</li>\n    <li>isEqualNode()</li>\n    <li>isSameNode()</li>\n</ul>\n<a href=\"https://developer.mozilla.org/en-US/docs/DOM/element\" target=\"_blank\">\nFull DOM Element Reference &raquo;</a>\n"
   }, 
   {
-    "jsbin": "exocic/4", 
+    "jsbin": "exocic/3", 
     "title": "DOM manipulation: `createElement`, `appendChild`", 
     "desc": "Creating new elements programatically is done using\n`newElement = document.createElement(\"tagName\")` and then add it as a child to a parent\nelement using `parent.appendChild(newElement)`.\n"
   }, 
