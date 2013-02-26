@@ -1,0 +1,33 @@
+callback([
+  {
+    "jsbin": "esexic/8", 
+    "title": "Get element by ID", 
+    "desc": "You can retrieve a DOM Element by its ID by using `document.getElementById(\"id\")`. <hr> <strong>Note about these slides:</strong> You will need to open your browser's console (Chrome: <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>J</kbd> on Windows or <kbd>ALT</kbd>+<kbd>CMD</kbd>+<kbd>J</kbd> on Mac, Firefox with <a href=\"https://getfirebug.com/\">Firebug</a>: <kbd>F12</kbd>) for some slides from this point on when you see `console.log()`.\n"
+  }, 
+  {
+    "jsbin": "ahokah/3", 
+    "title": "Get element by tag name", 
+    "desc": "Another alternative is to retrieve by tag name (i.e. paragraphs, anchors and so on) using `document.getElementsByTagName(\"tag\")`.\n\nNote that unlike `getElementById()`, `getElementsByTagName()` will return an array of elements, even if there is only one tag found."
+  }, 
+  {
+    "jsbin": "ojepun/7", 
+    "title": "innerHTML property of DOM Elements", 
+    "desc": "Use `domNode.innerHTML` to either read or write new HTML to a DOM node."
+  }, 
+  {
+    "jsbin": "ukehux/5", 
+    "title": "Accessing style attributes via the DOM", 
+    "desc": "Use `domNode.style.property` to read or write a CSS property.\nFor dashed properties, like `background-color`, you must convert the property name to lowerCamelCase: `backgroundColor`."
+  }, 
+  {
+    "jsbin": "iqikim/7", 
+    "title": "Accessing form data via `document.forms`", 
+    "desc": "All forms inside of a document are represented in `document.forms` as an array. Index 0 represents the very first `<form>` seen in the document, 1 the second, and so on. If the form element contained inside a form tag has a name, it is accessible using that name as the index or using dot notation. Otherwise it can be accessed via `document.forms[n].elements[m]`. Finally, to access the value of an input field, you can use the `value` property."
+  }, 
+  {
+    "jsbin": "acaheg/4", 
+    "title": "Select boxes, checkboxes and radio buttons", 
+    "desc": "Checkboxes and radio buttons have a checked state.\nSelect boxes have a selected state instead on the `option` tags (`options` property)."
+  }
+]
+)

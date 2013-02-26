@@ -1,15 +1,26 @@
 - title: Get element by ID
-  jsbin: esexic/7
-  desc: You can retrieve a DOM Element by its ID by using
-        `document.getElementById("id")`.
+  jsbin: esexic/8
+  desc: >
+        You can retrieve a DOM Element by its ID by using `document.getElementById("id")`.
+        <hr>
+        <strong>Note about these slides:</strong> You will need to open your browser's console (Chrome: <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>J</kbd> on Windows or <kbd>ALT</kbd>+<kbd>CMD</kbd>+<kbd>J</kbd> on Mac, Firefox with <a href="https://getfirebug.com/">Firebug</a>: <kbd>F12</kbd>) for some slides from this point on when you see `console.log()`.
+- title: Get element by tag name
+  jsbin: ahokah/3
+  desc: Another alternative is to retrieve by tag name (i.e. paragraphs, anchors and so on)
+        using `document.getElementsByTagName("tag")`.
+
+        
+        Note that unlike `getElementById()`, `getElementsByTagName()` will return an array of elements,
+        even if there is only one tag found.
 - title: innerHTML property of DOM Elements
   jsbin: ojepun/7
   desc: Use `domNode.innerHTML` to either read or write new HTML to a DOM node.
 - title: Accessing style attributes via the DOM
   jsbin: ukehux/5
   desc: "Use `domNode.style.property` to read or write a CSS property.
-
-         For dashed properties, like `background-color`, you must convert the property name to lowerCamelCase: `backgroundColor`."
+         
+         For dashed properties, like `background-color`, you must convert the property name to
+         lowerCamelCase: `backgroundColor`."
 - title: Accessing form data via `document.forms`
   jsbin: iqikim/7
   desc:  All forms inside of a document are represented in `document.forms` as an array.

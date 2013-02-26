@@ -4,9 +4,14 @@ jQuery(function() {
         $desc   = $('#slide-inner div');
         $iframe = $('iframe');
 
-    $.get('data.yml', function(_data) {
-        data = jsyaml.load(_data);
-        $(window).trigger('hashchange');
+    $.ajax({
+        url: 'http://istvanp.github.com/tutorials/dhtml/data.json',
+        dataType: 'jsonp',
+        jsonpCallback: 'callback',
+        success: function(_data) {
+            data = _data;
+            $(window).trigger('hashchange');
+        }
     });
 
     $('#next').on('click', function() {
@@ -56,9 +61,9 @@ jQuery(function() {
             title = slide + ". " + (title || 'No title');
             if (desc) {
                 desc = desc.replace(/&/g,'&amp;')
-                           .replace(/</g,'&lt;')
-                           .replace(/>/g,'&gt;')
-                           .replace("\n", "<br>")
+                           // .replace(/</g,'&lt;')
+                           // .replace(/>/g,'&gt;')
+                           .replace(/\n/g, "<br>")
                            .replace(re, replacement);
             }
 
