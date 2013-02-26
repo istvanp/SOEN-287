@@ -1,5 +1,5 @@
 // @title Regular Expressions: match a non-digit character
-// @desc Use <code>\D</code> to match any non-digit character. Equivalent to <code>[0-9]</code>.
+// @desc Use <code>\D</code> to match any non-digit character. Equivalent to <code>[^0-9]</code>.
 
 var re = /\D+/;
 

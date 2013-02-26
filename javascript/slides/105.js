@@ -20,17 +20,17 @@ if (re.exec("http://www.concordia.ca/") !=
     "http://www.concordia.ca,concordia,ca") {
     error('Did not match http://www.concordia.ca,concordia,ca');
 } else {
-    print('OK!');
+    println('OK!');
 }
 if (re.exec("http://google.com/") !=
     "http://google.com,google,com") {
     error('Did not match http://google.com,google,com');
 } else {
-    print('OK!');
+    println('OK!');
 }
 if (re.exec("twitter.com") !=
     "twitter.com,twitter,com") {
     error('Did not match twitter.com,twitter,com');
 } else {
-    print('OK!');
+    println('OK!');
 }
