@@ -3,6 +3,7 @@ body {
 	font-family: 'Open Sans', Arial, sans-serif;
 	margin: 0;
 	padding: 0;
+    overflow: hidden;
 }
 h1,h2,h3,h4,h5,h6 {
 	font-family: 'Droid Serif', Arial, sans-serif;
@@ -18,7 +19,7 @@ code, pre {
 	font-family: "Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace";
 }
 code {
-	background: #eee;
+	background: #f3f3f3;
 	padding: 1px 2px;
 }
 hr {
@@ -34,25 +35,27 @@ kbd {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
+    display: inline-block;
     font: normal 12px sans-serif;
     padding: 3px 5px;
-    margin: 0 2px;
-    vertical-align: 20%;
+    margin: 3px 2px;
+    vertical-align: 10%;
 }
 #slide-outer {
 	position: absolute;
 	top: 0;
-	height: 200px;
+	height: 250px;
 	bottom: auto;
 	left: 0;
 	right: 0;
+    overflow: auto;
 }
 #slide-inner {
 	margin: 20px;
 }
 #jsbin {
 	position: absolute;
-	top: 200px;
+	top: 250px;
 	left: 0;
 	right: 0;
 	bottom: 0;

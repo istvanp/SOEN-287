@@ -1,33 +1,119 @@
-callback([
+callback(
+[
+  {
+    "jsbin": false, 
+    "title": "Common pitfall", 
+    "desc": "JavaScript is usually interpreted as soon it's seen by the browser.\nIf your `<script>` tag is placed in the `<head>` and your have code that is looking to find a DOM\nelement, it might not be there yet. That is why you should place your external and inline scripts at the very\nend of the `<body>` tag.\n\n```\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">\n<head>\n    <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n    <title>My Title</title>\n</head>\n<body>\n    <div id=\"myDiv\"></div>\n    <script type=\"text/javascript\" src=\"myscript.js\"></script>\n</body>\n</html>\n```\n<h2>A note about these slides</h2>\nYou will need to open your browser's console for some slides from this point on when you see `console.log()`.\n<ul>\n    <li>Windows\n        <ul>\n            <li>Chrome: <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>J</kbd>\n            <li>Vanilla Firefox: <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>K</kbd></li>\n            <li>Firefox with <a href=\"https://getfirebug.com/\">Firebug</a>: <kbd>F12</kbd></li>\n        </ul>\n    </li>\n    <li>Mac\n        <ul>\n            <li>Chrome: <kbd>ALT</kbd>+<kbd>CMD</kbd>+<kbd>J</kbd></li>\n            <li>Vanilla Firefox: <kbd>ALT</kbd>+<kbd>CMD</kbd>+<kbd>K</kbd></li>\n            <li>Firefox with <a href=\"https://getfirebug.com/\">Firebug</a>: <kbd>F12</kbd></li>\n        </ul>\n    </li>\n</ul>\n"
+  }, 
   {
     "jsbin": "esexic/8", 
     "title": "Get element by ID", 
-    "desc": "You can retrieve a DOM Element by its ID by using `document.getElementById(\"id\")`. <hr> <strong>Note about these slides:</strong> You will need to open your browser's console (Chrome: <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>J</kbd> on Windows or <kbd>ALT</kbd>+<kbd>CMD</kbd>+<kbd>J</kbd> on Mac, Firefox with <a href=\"https://getfirebug.com/\">Firebug</a>: <kbd>F12</kbd>) for some slides from this point on when you see `console.log()`.\n"
+    "desc": "You can retrieve a DOM Element by its ID by using `document.getElementById(\"id\")`.\n"
   }, 
   {
     "jsbin": "ahokah/3", 
     "title": "Get element by tag name", 
-    "desc": "Another alternative is to retrieve by tag name (i.e. paragraphs, anchors and so on) using `document.getElementsByTagName(\"tag\")`.\n\nNote that unlike `getElementById()`, `getElementsByTagName()` will return an array of elements, even if there is only one tag found."
+    "desc": "Another alternative is to retrieve by tag name (i.e. paragraphs, anchors and so on) using `document.getElementsByTagName(\"tag\")`.\n<p>Note that unlike `getElementById()`, `getElementsByTagName()` will return an array of elements, even if there is only one tag found.</p>"
   }, 
   {
-    "jsbin": "ojepun/7", 
-    "title": "innerHTML property of DOM Elements", 
-    "desc": "Use `domNode.innerHTML` to either read or write new HTML to a DOM node."
+    "jsbin": "ojepun/8", 
+    "title": "`innerHTML` property of DOM Elements", 
+    "desc": "Use `domElement.innerHTML` to either read or write new HTML to a DOM node."
   }, 
   {
-    "jsbin": "ukehux/5", 
+    "jsbin": "ukehux/6", 
     "title": "Accessing style attributes via the DOM", 
-    "desc": "Use `domNode.style.property` to read or write a CSS property.\nFor dashed properties, like `background-color`, you must convert the property name to lowerCamelCase: `backgroundColor`."
+    "desc": "Use `domElement.style.property` to read or write a CSS property.\n<p>For dashed properties, like `background-color`, you must convert the property name to lowerCamelCase: `backgroundColor`.</p>"
   }, 
   {
-    "jsbin": "iqikim/7", 
+    "jsbin": "iqikim/8", 
     "title": "Accessing form data via `document.forms`", 
-    "desc": "All forms inside of a document are represented in `document.forms` as an array. Index 0 represents the very first `<form>` seen in the document, 1 the second, and so on. If the form element contained inside a form tag has a name, it is accessible using that name as the index or using dot notation. Otherwise it can be accessed via `document.forms[n].elements[m]`. Finally, to access the value of an input field, you can use the `value` property."
+    "desc": "All forms inside of a document are represented in `document.forms` as an array. Index 0 represents the very first form seen in the document, 1 the second, and so on. If the form element contained inside a form tag has a name, it is accessible using that name as the index or using dot notation. Otherwise it can be accessed via `document.forms[n].elements[m]`. Finally, to access the value of an input field, you can use the `value` property."
   }, 
   {
-    "jsbin": "acaheg/4", 
+    "jsbin": "acaheg/7", 
     "title": "Select boxes, checkboxes and radio buttons", 
     "desc": "Checkboxes and radio buttons have a checked state.\nSelect boxes have a selected state instead on the `option` tags (`options` property)."
+  }, 
+  {
+    "jsbin": "ojabuj/3", 
+    "title": "Events: HTML attribute", 
+    "desc": "You can run some piece of JavaScript code when a user does a certain action, like clicking on a button. The possible attribute events are: `onblur`, `onchange`, `onclick`, `ondblclick`, `onfocus`, `onkeydown`, `onkeypress`, `onkeyup`, `onload`, `onmousedown`, `onmousemove`, `onmouseout`, `onmouseover`, `onmouseup`, `onreset`, `onselect`, `onsubmit`, `onunload`. Note that certain events only work on certain tags. For example, `onload` and `onunload` will only work on the body tag. <p>         The value of the attribute is one or more lines of JavaScript (use a semi-colon for multiple lines). Note that you must escape double quotes if there are any.</p>         <p> <strong>TIP:</strong> use single quotes for strings to avoid having to escape double quotes.</p> <h2>Passing the element to the handler</h2> You can pass the DOM element to the handling function by using the `this` keyword.\n"
+  }, 
+  {
+    "jsbin": "uqetun/3", 
+    "title": "Events: listeners", 
+    "desc": "Instead of defining your events inside HTML attributes, you can listen to events strictly via\nJavaScript:\n    \n`domElement.addEventListener(type, listener, useCapture)`\n<ul>\n  <li>`domElement` is a DOM Element (obtained using `document.getElementById()` for example)</li>\n  <li>`type` is the type of event (i.e. `click`)</li>\n  <li>`listener` is a named or anonymous function to run when the event is fired</li>\n  <li>`useCapture`: fire the event when capturing (`true`) or when bubbling (`false`)</li>\n</ul>\n"
+  }, 
+  {
+    "jsbin": "ixiqox/3", 
+    "title": "Events: `addEventListener`'s useCapture", 
+    "desc": "The `useCapture` parameter of `addEventListener` will fire at the capture phase when set to `true` or when bubbling when set to `false`.\n\n<p>\n    <a href=\"http://www.w3.org/TR/2003/NOTE-DOM-Level-3-Events-20031107/events.html#Events-phases\"\n       target=\"_blank\">See a diagram of the event phases &raquo;</a><br>\n    <a href=\"http://www.quirksmode.org/js/events_order.html\" target=\"_blank\">\n       More information on event ordering &raquo;</a>\n</p>\n"
+  }, 
+  {
+    "jsbin": "ofolip/1", 
+    "title": "Events: `onclick`, ... DOM properties", 
+    "desc": "There is third way to attach an event to an element: changing one of the element's `on*` property.\n\n```\ndomElement.onclick = function() {\n    // do something\n};\n```        \nThis method provides the most compatibility across browsers but lacks the versatility of `addEventListener` because it only supports a single listener and the event is always fired in the bubbling phase.\n"
+  }, 
+  {
+    "jsbin": "etoqef/2", 
+    "title": "Events: removing an event handler", 
+    "desc": "You can stop listening to an event by calling `removeEventListener`\nif you used `addEventListener` or set the `on*` property to `undefined` or `null`.\n"
+  }, 
+  {
+    "jsbin": "uwilal/3", 
+    "title": "Input events: `focus`, `blur`, `change`", 
+    "desc": "`focus` is executed when the element gains focus (user is interacting with a input field for example).\n\n`blur` is executed when the element loses focus (user clicks outside the bounds of the focused element).\n\n`change` is executed when the input field has changed value since it gained focus and is now losing focus (blur).\n"
+  }, 
+  {
+    "jsbin": "ocohom/2", 
+    "title": "Window & body events: `onload`, `onunload`", 
+    "desc": "`onload` will fire when the page has finished loading.\n\n`onunload` will fire when the user leaves the page and is not cancellable.\n<a href=\"https://developer.mozilla.org/en-US/docs/Mozilla_event_reference/unload\">More info &raquo;</a>\n\n<p>\nTo ask if the user wants to leave without saving their work, you should use the `beforeunload` event on\nthe `window` property.\n"
+  }, 
+  {
+    "jsbin": "itadiw/2", 
+    "title": "Form events: `submit`, `reset`", 
+    "desc": "`submit` is executed when the user clicks on the submit button of a form (i.e `<input type=\"submit\"/>`)\n\n`reset` is executed when the user clicks on the submit button of a form (i.e `<input type=\"reset\"/>`)\n<p>\nYou can fire both of these programmatically as well. Simply call `submit()` or `reset()` on the form element.\n</p>\n<h2>Returned value</h2>\nIf you return `false` on either of these two events, you can cancel the default behaviour\n(i.e. submitting the form or resetting the form).\n\nThis is especially useful if you wish to do client side validation of a form.\n"
+  }, 
+  {
+    "jsbin": "avaxej/2", 
+    "title": "Events: forced focus", 
+    "desc": "You can set the focus of an input element programmatically. Simply call `focus()` on a DOM element.\n\nSimilarly, you can call `blur()` to forcibly remove focus.\n"
+  }, 
+  {
+    "jsbin": "ecefed/4", 
+    "title": "Mouse events", 
+    "desc": "`mousedown`, `mousemove`, `mouseout`, `mouseover`, `mouseup`, `click` and `dblclick` are the events that allows\nyou to interact with the mouse.\n\n<h2>Mouse position</h2>\nUse `clientX` / `clientY`, `pageX` / `pageY` or `screenX` / `screenY`\non the passed event parameter to determine the current position of the mouse.\n\n<a href=\"http://www.quirksmode.org/mobile/viewports.html#link17\" target=\"_blank\">More info &raquo;</a>\n\n<h2>Which mouse button was clicked?</h2>\nUse the `which` property to determine the button pressed.\nNote: IE < 9 you must use the `button` property.\n\n<a href=\"http://unixpapa.com/js/mouse.html\" target=\"_blank\">More info &raquo;</a>\n\n<h2>What was the target element?</h2>\nUse the `target` property (Chrome/Safari/Firefox) or the `srcElement` (IE) to determine the target element.\n\n<a href=\"http://www.quirksmode.org/js/events_properties.html#target\" target=\"_blank\">More info &raquo;</a>\n"
+  }, 
+  {
+    "jsbin": "eqaced/9", 
+    "title": "Keyboard Events", 
+    "desc": "`keydown`, `keyup` and `keypress` are the events that allows you to interact with the keyboard.\n\n<h2>What key was pressed?</h2>\nUse the `keyCode` of the passed event parameter to determine the\n<a href=\"http://www.ascii-code.com/\" target=\"_blank\">ASCII character code</a>\nof the key that was pressed. For example, 13 corresponds to the enter key.\n\n<a href=\"http://www.quirksmode.org/js/events_properties.html#key\" target=\"_blank\">More info &raquo;</a>\n"
+  }, 
+  {
+    "jsbin": "iyeken/2", 
+    "title": "event.preventDefault", 
+    "desc": "`event.preventDefault` cancels the event if it is cancelable, without\nstopping further propagation of the event.\n\n<p>Returning `false` on the \"default\" event can accomplish a similar effect.</p>\n"
+  }, 
+  {
+    "jsbin": "aciroz/2", 
+    "title": "DOM Traversal", 
+    "desc": "All DOM elements have tree traversing properties. They are:\n<ul>\n    <li>childNodes</li>\n    <li>children</li>\n    <li>firstChild</li>\n    <li>innerHTML</li>\n    <li>lastChild</li>\n    <li>nextSibling</li>\n    <li>nodeName</li>\n    <li>nodeType</li>\n    <li>nodeValue</li>\n    <li>parentNode</li>\n    <li>previousSibling</li>\n</ul>\nand methods:\n<ul>\n    <li>hasChildNodes()</li>\n    <li>isEqualNode()</li>\n    <li>isSameNode()</li>\n</ul>\n<a href=\"https://developer.mozilla.org/en-US/docs/DOM/element\" target=\"_blank\">\nFull DOM Element Reference &raquo;</a>\n"
+  }, 
+  {
+    "jsbin": "exocic/4", 
+    "title": "DOM manipulation: `createElement`, `appendChild`", 
+    "desc": "Creating new elements programatically is done using\n`newElement = document.createElement(\"tagName\")` and then add it as a child to a parent\nelement using `parent.appendChild(newElement)`.\n"
+  }, 
+  {
+    "jsbin": "ujiyix/6", 
+    "title": "DOM manipulation: `setAttribute`, `style`", 
+    "desc": "Attributes and styles can be changed on the new node as well as elements already present.\n"
+  }, 
+  {
+    "jsbin": "atuyiv/2", 
+    "title": "DOM manipulation: `insertBefore`, `removeChild`", 
+    "desc": "`parentNode.insertBefore(newNode, referenceNode)` can be used to place `newNode` right before `referenceNode` inside of the `parentNode`.\n\n`parentNode.removeChild(child)` removes `child` from the `parentNode`."
   }
 ]
 )
