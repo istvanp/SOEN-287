@@ -4,7 +4,7 @@ jQuery(function() {
         $desc   = $('#slide-inner div');
         $iframe = $('iframe');
 
-    $.get('data.yml', function(_data) {
+    $.get('http://istvanp.github.com/tutorials/dhtml/data.yml', function(_data) {
         data = jsyaml.load(_data);
         $(window).trigger('hashchange');
     });
