@@ -148,7 +148,7 @@
         To ask if the user wants to leave without saving their work, you should use the `beforeunload` event on
         the `window` property.
 - title: "Form events: `submit`, `reset`"
-  jsbin: itadiw/2
+  jsbin: itadiw/4
   desc: |
         `submit` is executed when the user clicks on the submit button of a form (i.e `<input type="submit"/>`)
         
