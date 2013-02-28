@@ -56,7 +56,7 @@ callback(
     "desc": "There is third way to attach an event to an element: changing one of the element's `on*` property.\n\n```\ndomElement.onclick = function() {\n    // do something\n};\n```        \nThis method provides the most compatibility across browsers but lacks the versatility of `addEventListener` because it only supports a single listener and the event is always fired in the bubbling phase.\n"
   }, 
   {
-    "jsbin": "etoqef/2", 
+    "jsbin": "etoqef/3", 
     "title": "Events: removing an event handler", 
     "desc": "You can stop listening to an event by calling `removeEventListener`\nif you used `addEventListener` or set the `on*` property to `undefined` or `null`.\n"
   }, 
@@ -81,7 +81,7 @@ callback(
     "desc": "You can set the focus of an input element programmatically. Simply call `focus()` on a DOM element.\n\nSimilarly, you can call `blur()` to forcibly remove focus.\n"
   }, 
   {
-    "jsbin": "ecefed/4", 
+    "jsbin": "ecefed/6", 
     "title": "Mouse events", 
     "desc": "`mousedown`, `mousemove`, `mouseout`, `mouseover`, `mouseup`, `click` and `dblclick` are the events that allows\nyou to interact with the mouse.\n\n<h2>Mouse position</h2>\nUse `clientX` / `clientY`, `pageX` / `pageY` or `screenX` / `screenY`\non the passed event parameter to determine the current position of the mouse.\n\n<a href=\"http://www.quirksmode.org/mobile/viewports.html#link17\" target=\"_blank\">More info &raquo;</a>\n\n<h2>Which mouse button was clicked?</h2>\nUse the `which` property to determine the button pressed.\nNote: IE < 9 you must use the `button` property.\n\n<a href=\"http://unixpapa.com/js/mouse.html\" target=\"_blank\">More info &raquo;</a>\n\n<h2>What was the target element?</h2>\nUse the `target` property (Chrome/Safari/Firefox) or the `srcElement` (IE) to determine the target element.\n\n<a href=\"http://www.quirksmode.org/js/events_properties.html#target\" target=\"_blank\">More info &raquo;</a>\n"
   }, 
