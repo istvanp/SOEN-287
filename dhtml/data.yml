@@ -124,7 +124,7 @@
         
 
 - title: "Events: removing an event handler"
-  jsbin: etoqef/2
+  jsbin: etoqef/3
   desc: |
         You can stop listening to an event by calling `removeEventListener`
         if you used `addEventListener` or set the `on*` property to `undefined` or `null`.
@@ -169,7 +169,7 @@
         Similarly, you can call `blur()` to forcibly remove focus.
         
 - title: "Mouse events"
-  jsbin: ecefed/4
+  jsbin: ecefed/6
   desc: |
         `mousedown`, `mousemove`, `mouseout`, `mouseover`, `mouseup`, `click` and `dblclick` are the events that allows
         you to interact with the mouse.
