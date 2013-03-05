@@ -1,0 +1,1129 @@
+- title: "Hello World in PHP"
+  desc: |
+        PHP code that must be evaluated by the PHP interpreter must always be enclosed in `<?php &hellip; ?>` tags. You might also be able to use the short open tag `<? &hellip; ?>` depending on your configuration and if you are not using inline XML. 
+        <ul>
+          <li>PHP files are always saved with a `.php` extension.</li>
+          <li>Statements in PHP must end with a semi-colon. They are NOT optional.</li>
+        </ul>
+        <h2>Documentation</h2>
+        PHP has a pretty decent documentation. Use it!<br>
+        <a href="http://www.php.net/manual/en/">http://www.php.net/</a>
+  php: |
+        <?php
+            echo "Hello World!";
+        ?>
+  output: Hello World!
+- title: "Comments in PHP"
+  desc: |
+        PHP supports 'C', 'C++' and Unix shell-style (Perl style) comments.
+  php: |
+        <?php
+            echo 'This is a test.'; // This is a one-line c++ style comment
+            /* This is a multi line comment
+               yet another line of comment */
+            echo 'This is yet another test.';
+            echo 'One Final Test.'; # This is a one-line shell-style comment
+        ?>
+  output: This is a test.This is yet another test.One Final Test.
+- title: "Output using `echo`"
+  desc: |
+        There are many ways to output something from PHP and send it to the browser.
+
+        `echo` is the most common way to print something out. It isn't a function per se (it is a language construct), but it can take multiple arguments separated by commas which will end up being concatenated.
+
+        <a href="http://www.php.net/manual/en/function.echo.php">echo at php.net</a>
+  php: |
+        <?php
+            echo "This ", "will be concatenated.";
+            echo "There are no new lines added."
+        ?>
+  output: This will be concatenated.There are no new lines added.
+- title: "Output shorthand"
+  desc: |
+        Sometimes you just need to print a single variable or string using PHP. There is a shorter way than using `echo`: <br>
+        <small>Note: This will only work if you have <a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> enabled in your PHP configuration.</small>
+  php: <?= "Print this" ?>
+  output: Print this
+- title: "Output using `print`"
+  desc: |
+        `print`, contrary to `echo`, only takes a single argument but can work as an expression. `echo` is also slightly faster.
+
+        <a href="http://www.php.net/manual/en/function.print.php">print at php.net</a>
+  php: |
+        <?php
+            (true) ? print "yes" : print "false";
+            //(true) ? echo "yes" : echo "false"; // will not work!
+        ?>
+  output: yes
+- title: "Output outside PHP tags"
+  desc: |
+        Anything that is not inside `<?php &hellip; ?>` tags in PHP is sent directly to the browser. Therefore, you can simply close and open the php tags to send the output. (And yes, doing this works <u>anywhere</u>, even inside functions.)
+        <p>
+        Due to this, always be wary of whitespace before and after the open and close php tags. (Some features like changing a <a href="http://www.php.net/manual/en/function.header.php">response header</a> require that no output is sent before being used.) A good convention is to omit the <b>last closing</b> PHP tag (slides from now on do this).
+        </p>
+  php: |
+        <?php echo "Hello " ?>
+        World<?php echo '!';
+  output: Hello World!
+- title: "Variables"
+  desc: |
+        Variables in PHP are similar to Perl (PHP was partly inspired by Perl). They must be prefixed with a dollar sign ($) and cannot start with a number.
+        <p>
+          There are no type declarations; PHP is weakly typed.
+        </p>
+  php: |
+        <?php
+        $a = 2;
+        $b = 3;
+        $sum = $a + $b;
+        echo $sum;
+  output: 5
+- title: "Data Types: Scalar"
+  desc: |
+        <ul>
+          <li>Boolean: `true` or `false` (case insensitive)</li>
+          <li>Integer</li>
+          <li>Double</li>
+          <li>String</li>
+        </ul>
+  php: |
+        <?php
+        $boolean  = true;
+        $boolean2 = FALSE;
+        $integer  = 1;
+        $integer2 = 0xFF; // 255 in hex
+        $integer3 = 0377; // 255 in octal
+        $double   = 1.0;
+        $double2  = 1.0e5;
+        $double3  = 7E-10;
+        $string   = "My String";
+
+        echo gettype($boolean), ' ', $boolean,   "\n",
+             gettype($boolean2), ' ', $boolean2, "\n",
+             gettype($integer), ' ', $integer,   "\n",
+             gettype($integer2), ' ', $integer2, "\n",
+             gettype($integer3), ' ', $integer3, "\n",
+             gettype($double), '  ', $double,    "\n",
+             gettype($double2), '  ', $double2,  "\n",
+             gettype($double3), '  ', $double3,  "\n",
+             gettype($string), '  ', $string;
+  output: |
+          boolean 1
+          boolean 
+          integer 1
+          integer 255
+          integer 255
+          double  1
+          double  100000
+          double  7.0E-10
+          string  My String
+- title: "Data Types: Compound"
+  desc: |
+        <ul>
+          <li>Array</li>
+          <li>Object</li>
+        </ul>
+  php: |
+        <?php
+        $array = array(1, "two", 3);
+
+        class Car {
+            public $make;
+            public $model;
+            public $year;
+        }
+
+        var_dump($array, new Car());
+  output: |
+          array(3) {
+            [0]=>
+            int(1)
+            [1]=>
+            string(3) "two"
+            [2]=>
+            int(3)
+          }
+          object(Car)#1 (3) {
+            ["make"]=>
+            NULL
+            ["model"]=>
+            NULL
+            ["year"]=>
+            NULL
+          }
+- title: "Data Types: Special"
+  desc: |
+        <ul>
+          <li>Resource</li>
+          <li>NULL (case insensitive)</li>
+        </ul>
+  php: |
+        <?php
+
+        $handle = fopen("/dev/null", "r");
+        $null = null;
+
+        var_dump($handle, $null);
+  output: |
+          resource(2) of type (stream)
+          NULL
+- title: "Boolean"
+  desc: |
+        In PHP the following evaluate to false:
+        <ul>
+          <li>`false`</li>
+          <li>`0`</li>
+          <li>`0.0`</li>
+          <li>`""`</li>
+          <li>`"0"`</li>
+          <li>`null`</li>
+          <li>array with 0 elements</li>
+        </ul>
+  php: |
+       <?php
+       if (false || 0 || 0.0 || "" || "0" || null || array())
+       {
+          echo "Somebody lied! One was true!";
+       }
+       else
+       {
+          echo "OK";
+       }
+  output: "OK"
+- title: "Strings"
+  desc: |
+        Strings literals use single or double quotation marks as delimiters. The difference is that double quotation marks allow for interpolation.
+  php: |
+       <?php
+
+       $val = 10 * 10;
+       $str = "10 * 10 is $val";
+
+       echo $str;
+  output: 10 * 10 is 100
+- title: "String concatenation"
+  desc: Strings in PHP are concatenated using the `.` operator, not `+`.
+  php: |
+        <?php
+        $str = "\nThis is " . "a concatenated " .
+               "string with double quotes (\")";
+        echo $str . '.\n$str'; // no interpolation!
+  output: |
+          
+          This is a concatenated string with double quotes (").\n$str
+- title: "`NULL`, `unset()`, `isset()`"
+  desc: |
+        A variable that has been declared but not assigned a value is `NULL` by default.<br>
+        <a href="http://www.php.net/manual/en/function.isset.php">`isset()`</a> can be used to check if a variable is set or not.<br>
+        <a href="http://www.php.net/manual/en/function.unset.php">`unset()`</a> can be used to unset (destroy) a variable.
+  php: |
+       <?php
+
+       $myVar;
+       $deleteMe = "";
+
+       echo gettype($myVar), "\n"; // We get a PHP Notice here
+       
+       isset($deleteMe) ? print "set" : print "unset";
+       echo "\n", gettype($deleteMe), "\n";
+
+       unset($deleteMe);
+
+       isset($deleteMe) ? print "set" : print "unset";
+       echo "\n", gettype($deleteMe);
+  output: |
+
+
+          Notice:  Undefined variable: myVar in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
+
+          NULL
+          set
+          string
+          unset
+
+
+          Notice:  Undefined variable: deleteMe in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 14
+
+          NULL
+- title: "Arithmetic"
+  desc: |
+        Available operators for arithmetic in PHP are: `+`, `-`, `*`, `/`, `%`, `++`, `--`.<br>
+        Math function are available as well. <a href="http://www.php.net/manual/en/ref.math.php">See the complete list &raquo;</a>
+  php: |
+       <?php
+       $i = 0;
+       echo 1 + 2, "\n";
+       echo 10 - 20, "\n";
+       echo 10 * 10, "\n";
+       echo 1 / 3, "\n";
+       echo 3 % 2, "\n";
+       echo $i++, "\n";
+       echo --$i, "\n\n";
+
+       // Math
+       echo floor(20 / 3), "\n";
+       echo max(5, 10), "\n";
+       echo rand(1, 100), "\n";
+       echo pi(), "\n";
+       echo M_PI, "\n";
+       echo sqrt(-1), "\n"; // Use is_nan() to check for NAN
+  output: |
+          3
+          -10
+          100
+          0.33333333333333
+          1
+          0
+          0
+
+          6
+          10
+          81
+          3.1415926535898
+          3.1415926535898
+          NAN
+- title: "Type Coercion"
+  desc: |
+        PHP is weakly typed, which means type coercion will occur if data types differ.
+  php: |
+       <?php
+
+       echo true . 1, "\n";
+       echo true + 1, "\n";
+       echo true . "str", "\n\n";
+       
+       echo false . 1, "\n";
+       echo false + 1, "\n";
+       echo false . "str", "\n\n";
+       
+       echo null . "str", "\n";
+       echo null + "str", "\n";
+       echo null + 1, "\n\n";
+
+       echo "str" . "str", "\n";
+       echo "str" + "str", "\n";
+       echo "str" + 1, "\n";
+       echo "-2 str" + 1, "\n";
+       echo "str -2 str" + 1, "\n";
+       echo "0.2 str" + 1, "\n";
+  output: |
+          11
+          2
+          1str
+
+          1
+          1
+          str
+
+          str
+          0
+          1
+
+          strstr
+          0
+          1
+          -1
+          1
+          1.2
+- title: "Type casting, `gettype()`, `settype()`, `*val()`"
+  desc: |
+        You can explicitly convert to another data type using the `(datatype) $var` syntax, a procedural function such as `int intval(mixed $var)` or using the `settype(mixed &$var, string $type)` function which modifies the variable directly.
+  php: |
+       <?php
+       $str = "-2.75 inside a ";
+       echo $str, gettype($str), "\n\n";
+
+       $int = (int) $str;
+       $dbl = (double) $str;
+
+       var_dump($int);
+       var_dump($dbl);
+
+       $int2 = intval($str);
+       $dbl2 = floatval($str); // doubleval() works the same too
+       $str2 = strval($dbl2);
+       var_dump($int2);
+       var_dump($dbl2);
+
+       var_dump($str2);
+
+       settype($dbl2, 'array'); // modifies the variable directly
+       var_dump($dbl2);
+  output: |
+          -2.75 inside a string
+
+          int(-2)
+          float(-2.75)
+          int(-2)
+          float(-2.75)
+          string(5) "-2.75"
+          array(1) {
+            [0]=>
+            float(-2.75)
+          }
+- title: "String Operations"
+  desc: |
+        Many string functions are made available in the form of procedural functions.
+        <a href="http://www.php.net/manual/en/ref.strings.php">See the complete list &raquo;</a>
+  php: |
+       <?php
+       $str = "The quick brown fox jumps over the lazy dog.";
+
+       // Char at...
+       echo $str[0], "\n\n";
+       
+       // Substring
+       echo substr($str, 16), "\n";
+       echo substr($str, 16, 3), "\n\n";
+
+       // Length of a string
+       echo strlen($str), "\n\n";
+
+       // Change case
+       echo strtoupper($str), "\n";
+       echo strtolower($str), "\n";
+       echo ucwords($str), "\n\n";
+       
+       // Index of
+       echo strpos($str, 'fox'), "\n\n";
+
+       // Case insensitive compare (0 means equal)
+       echo strcasecmp($str, strtoupper($str)), "\n\n";
+
+       // Make numbers more legible
+       echo number_format(12345678, 2), "\n\n";
+
+       // Formatted string
+       printf('Hello %1$s %2$d %2$.2f', 'world', 7/3);
+  output: |
+          T
+
+          fox jumps over the lazy dog.
+          fox
+
+          44
+
+          THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
+          the quick brown fox jumps over the lazy dog.
+          The Quick Brown Fox Jumps Over The Lazy Dog.
+
+          16
+
+          0
+
+          12,345,678.00
+
+          Hello world 2 2.33
+- title: "Predicates: `is_*`"
+  desc: |
+        The following predicate functions are used to check against datatypes:
+        <ul>
+          <li>`is_array`</li>
+          <li>`is_bool`</li>
+          <li>`is_callable`</li>
+          <li>`is_float` or `is_double` or `is_real`</li>
+          <li>`is_int` or `is_integer` or `is_long`</li>
+          <li>`is_object`</li>
+          <li>`is_nan`</li>
+          <li>`is_null`</li>
+          <li>`is_numeric` (int or float or a numeric string)</li>
+          <li>`is_resource`</li>
+          <li>`is_scalar` (integer, float, string or boolean)</li>
+          <li>`is_string`</li>
+        </ul>
+  php: |
+       <?php
+       var_dump(is_array(array()));
+       var_dump(is_nan(sqrt(-1)));
+       var_dump(is_numeric('-10 is negative'));
+       var_dump(is_numeric('-10'));
+       var_dump(is_callable('pi'));
+       var_dump(is_callable('pie'));
+  output: |
+          bool(true)
+          bool(true)
+          bool(false)
+          bool(true)
+          bool(true)
+          bool(false)
+- title: "Control statements"
+  desc: |
+        The following control statements are available in PHP:
+        <ul>
+          <li>if, if-else, elseif</li>
+          <li>switch</li>
+          <li>while</li>
+          <li>do-while</li>
+          <li>for</li>
+          <li>foreach</li>
+          <li>break</li>
+          <li>continue</li>
+        </ul>
+  php: |
+       <?php
+
+       $i = 0;
+
+       if ($i == 0) {
+           echo "i equals 0";
+       } elseif ($i == 1) {
+           echo "i equals 1";
+       } elseif ($i == 2) {
+           echo "i equals 2";
+       } else {      
+           echo "i equals something else";
+       }
+
+       echo "\n";
+
+       switch ($i) {
+           case 0:
+               echo "i equals 0";
+               break;
+           case 1:
+               echo "i equals 1";
+               break;
+           case 2:
+               echo "i equals 2";
+               break;
+           default:
+               echo "i equals something else";
+       }
+
+       echo "\n";
+
+       for($i = 0; $i < 10; $i++) {
+           echo $i;
+       }
+
+
+       echo "\n";
+       $i = 0;
+
+       while(true) {
+           if ($i++ >= 9) {
+               break;
+           } else {
+             #continue; // uncomment to see what happens
+           }
+           echo $i;
+       }
+  output: |
+          i equals 0
+          i equals 0
+          0123456789
+          123456789
+- title: "Comparison, logical and bitwise operators"
+  desc: |
+        <ul>
+          <li>Comparison: `>=`, `<=`, `!=`, `==`</li>
+          <li>Strict equality / inequality: `===`, `!==`</li>
+          <li>Logical: `!`, `&&`, `||`, `and`, `or`, `xor`
+            <ul>
+              <li>`and`, `or` have lower priority than `&&` and `||`</li>
+              <li>`and`, `or` can be written as `AND`, `OR` (case insensitive)</li>
+            </ul>
+          </li>
+          <li>Bitwise: `&`, `|`, `^`, `~`, `<<`, `>>`</li>
+        </ul>
+  php: |
+       <?php
+
+       // Strict equality
+       var_dump(12 == '12');
+       var_dump(12 === '12');
+  output: |
+          bool(true)
+          bool(false)
+- title: "Arrays"
+  desc: |
+        Arrays in PHP can have values of mixed types. They can also have a key (otherwise known as a hash map, but in PHP it's usually called an associative array).
+  php: |
+       <?php
+
+       $arr1 = array('one', 'two', 'three');
+       $arr2 = array(0 => "Zero", 5 => "Five", 10 => "Ten");
+       $arr3 = array("one" => 1, "two" => 2, "three" => 3);
+
+       $bad = array(
+           1    => "a",
+           "1"  => "b",
+           1.5  => "c",
+           true => "d");
+      
+
+       print_r($arr1);
+       print_r($arr2);
+       print_r($arr3);
+       print_r($bad);
+
+       // Accessing an element
+       var_dump($arr1[0]);
+       var_dump($arr3["three"]);
+  output: |
+          Array
+          (
+              [0] => one
+              [1] => two
+              [2] => three
+          )
+          Array
+          (
+              [0] => Zero
+              [5] => Five
+              [10] => Ten
+          )
+          Array
+          (
+              [one] => 1
+              [two] => 2
+              [three] => 3
+          )
+          Array
+          (
+              [1] => d
+          )
+          string(3) "one"
+          int(3)
+- title: "Array length"
+  desc: |
+        To get the length of an array, use `count()` or `sizeof()`.
+  php: |
+       <?php
+
+       $arr = array(1, 2, 3);
+       echo count($arr), "\n";
+       echo sizeof($arr);
+  output: |
+          3
+          3
+- title: "Multi-dimensional arrays"
+  desc: |
+
+  php: |
+       <?php
+       $arr = array(array('1', '2', '3'), array('4', '5', '6'));
+
+       print_r($arr);
+
+       // Accessing an element
+       var_dump($arr[1][0]);
+
+       // Create new array on the spot
+       $arr2['level0']['level1'] = "0";
+       print_r($arr2);
+  output: |
+          Array
+          (
+              [0] => Array
+                  (
+                      [0] => 1
+                      [1] => 2
+                      [2] => 3
+                  )
+
+              [1] => Array
+                  (
+                      [0] => 4
+                      [1] => 5
+                      [2] => 6
+                  )
+
+          )
+          string(1) "4"
+          Array
+          (
+              [level0] => Array
+                  (
+                      [level1] => 0
+                  )
+
+          )
+- title: "Arrays: `foreach`"
+  desc: |
+        Iterating over elements in PHP is easy using the `foreach` construct.
+  php: |
+       <?php
+
+       $arr = array(1 => "one", "two", "three"); // 1 based index magic!
+
+       // Simple foreach loop
+       foreach($arr as $value) {
+           echo $value, "\n";
+       }
+
+       // Also retrieve the key
+       foreach($arr as $key => $value) {
+           echo "[$key] = $value\n";
+       }
+
+       // Pass by reference (&) allows to modify value
+       foreach($arr as $key => &$value) {
+           $value = strtoupper($value);
+       }
+
+       print_r($arr);
+  output: |
+          one
+          two
+          three
+          [1] = one
+          [2] = two
+          [3] = three
+          Array
+          (
+              [1] => ONE
+              [2] => TWO
+              [3] => THREE
+          )
+- title: "Arrays: internal pointer"
+  desc: |
+        Iterating over elements is also possible by moving around the internal pointer.
+        <ul>
+          <li>`current()` returns the element at the current position</li>
+          <li>`next()` moves pointer to the next element and return it</li>
+          <li>`prev()` moves pointer to the previous element and return it</li>
+          <li>`reset()` resets the pointer to the first element and return it</li>
+          <li>`end()` moves the pointer to the last element and return it</li>
+        </ul>
+  php: |
+       <?php
+
+       $arr = array('foot', 'bike', 'car', 'plane');
+
+       do {
+           echo current($arr), "\n";
+       } while(next($arr));
+  output: |
+          one
+          two
+          three
+          [1] = one
+          [2] = two
+          [3] = three
+          Array
+          (
+              [1] => ONE
+              [2] => TWO
+              [3] => THREE
+          )
+- title: "Arrays: `unset()`"
+  desc: |
+        Array elements can be removed using `unset()`. This does not provoke a reorder of indexes.
+  php: |
+       <?php
+
+       $arr = array(1, 2, 3);
+
+       unset($arr[1]);
+       print_r($arr);
+  output: |
+          Array
+          (
+              [0] => 1
+              [2] => 3
+          )
+- title: "Arrays: `array_key_exists()`"
+  desc: |
+        To check if an array key exists, use `array_key_exists(mixed $key, array $array)`.
+  php: |
+       <?php
+
+       $arr = array('one' => 1, 'two' => 2, 'three' => 3);
+
+       var_dump(array_key_exists('three', $arr));
+       var_dump(array_key_exists('four', $arr));
+  output: |
+          bool(true)
+          bool(false)
+- title: "Arrays: `array_search()` and `in_array()`"
+  desc: |
+        To check if an array contains a certain value, you can use `mixed array_search(mixed $needle, array $haystack[, bool $strict = false])` to find the key. Use `bool in_array(mixed $needle, array $haystack[, bool $strict = false])` to return true or false.
+  php: |
+       <?php
+
+       $arr = array('one' => 1, 'two' => 2, 'three' => 3);
+
+       var_dump(array_search(3, $arr));
+       var_dump(in_array(3, $arr));
+       var_dump(array_search("3", $arr, true));
+       var_dump(array_search(4, $arr));
+  output: |
+          string(5) "three"
+          bool(true)
+          bool(false)
+          bool(false)
+- title: "Arrays: `explode()` and `implode()`"
+  desc: |
+        You can take a string and turn it into an array at a each specified delimiter
+        using `explode()`.<br>
+        To join an array back into a string, you can use `implode()` and specify a delimiter.
+  php: |
+       <?php
+
+       $str = "The quick brown fox jumps over the lazy dog.";
+
+       $arr = explode(' ', $str);
+       print_r($arr);
+
+       print_r(implode('-', $arr));
+  output: |
+          string(5) "three"
+          bool(true)
+          bool(false)
+          bool(false)
+- title: "Filling an array"
+  desc: |
+        Since PHP keeps an internal pointer of the current element,
+        you can append new elements to the end of an array using `$arrayVar[]`.
+  php: |
+       <?php
+
+       $arr = array();
+
+       for($i = 1; $i <= 5; $i++) {
+           $arr[] = $i;
+       }
+
+       print_r($arr);
+  output: |
+          Array
+          (
+              [0] => 1
+              [1] => 2
+              [2] => 3
+              [3] => 4
+              [4] => 5
+          )
+- title: "`array_push()`, `array_pop`, `array_unshift`, `array_shift`"
+  desc: |
+        Append new elements to the end of an array using `array_push()` and
+        `array_pop()` to remove the last element and return it.<br>
+        Similarly, `array_unshift()` will prepend elements and `array_shift`
+        will remove the first element of the array.
+  php: |
+       <?php
+
+       $arr = array();
+
+       for($i = 1; $i <= 5; $i++) {
+           array_push($arr, $i, $i++);
+       }
+
+       print_r($arr);
+       var_dump(array_pop($arr));
+       print_r($arr);
+
+       $arr2 = array('March', 'April');
+       array_unshift($arr2, 'January', 'February');
+       print_r($arr2);
+       var_dump(array_shift($arr2));
+       print_r($arr2);
+  output: |
+          Array
+          (
+              [0] => 1
+              [1] => 2
+              [2] => 3
+              [3] => 4
+              [4] => 5
+          )
+- title: "Sorting an array"
+  desc: |
+        <table class="doctable table">
+            <caption>
+                <strong>Sorting function attributes</strong>
+            </caption>
+            <thead>
+                <tr>
+                    <th>
+                        Function name
+                    </th>
+                    <th>
+                        Sorts by
+                    </th>
+                    <th>
+                        Maintains key association
+                    </th>
+                    <th>
+                        Order of sort
+                    </th>
+                    <th>
+                        Related functions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.array-multisort.php" class="function">array_multisort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        associative yes, numeric no
+                    </td>
+                    <td>
+                        first array or sort options
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.array-walk.php" class="function">array_walk()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        low to high
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        high to low
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.krsort.php" class="function">krsort()</a></span>
+                    </td>
+                    <td>
+                        key
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        high to low
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
+                    </td>
+                    <td>
+                        key
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        low to high
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        natural, case insensitive
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        natural
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        no
+                    </td>
+                    <td>
+                        high to low
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.shuffle.php" class="function">shuffle()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        no
+                    </td>
+                    <td>
+                        random
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.array-rand.php" class="function">array_rand()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        no
+                    </td>
+                    <td>
+                        low to high
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        user defined
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
+                    </td>
+                    <td>
+                        key
+                    </td>
+                    <td>
+                        yes
+                    </td>
+                    <td>
+                        user defined
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.usort.php" class="function">usort()</a></span>
+                    </td>
+                    <td>
+                        value
+                    </td>
+                    <td>
+                        no
+                    </td>
+                    <td>
+                        user defined
+                    </td>
+                    <td>
+                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="http://www.php.net/manual/en/array.sorting.php">See docs &raquo;</a>
+  php: |
+       <?php
+
+       $arr = array();
+
+       for($i = 1; $i <= 10; $i++) {
+           $arr[] = rand(0, 100);
+       }
+       sort($arr);
+       print_r($arr);
+  output: false
+- title: "Array copy"
+  desc: |
+
+  php: |
+       <?php
+       $arr1 = array(2, 3);
+       $arr2 = $arr1;
+       $arr2[] = 4;
+
+       print_r($arr1); // stays unchanged
+       print_r($arr2);
+                    
+       $arr3 = &$arr1; // pass by reference (&)
+       $arr3[] = 4;
+
+       // now $arr1 and $arr3 are the same
+       print_r($arr1); 
+       print_r($arr3);
+- title: "Predefined Variables"
+  desc: |
+        PHP provides nine "<a href="http://www.php.net/manual/en/language.variables.superglobals.php">superglobals</a>" (accessible globally):
+        <ul>
+          <li>`GLOBALS` contains all variables in the global scope</li>
+          <li>`_GET` data sent to the PHP script via a GET request</li>
+          <li>`_POST` data sent to the PHP script via a POST request</li>
+          <li>`_COOKIE` cookies sent by the client's browser</li>
+          <li>`_FILES` file information sent via `<input type="file" />`</li>
+          <li>`_SESSION` session variables available to the the current script</li>
+          <li>`_REQUEST` is `_GET` + `_POST` + `_COOKIE` in one array</li>
+          <li>`_SERVER` information about the server environment</li>
+          <li>`_ENV` environment variables that are available to PHP</li>
+        </ul>
+  php: |
+       <?php
+       echo htmlspecialchars(print_r($_GET, 1));
+       print_r($_SERVER);
+  output: false
