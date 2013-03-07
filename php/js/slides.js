@@ -16,7 +16,7 @@ jQuery(function() {
     editor.getSession().setUseWrapMode(true);
     editor.getSession().on('change', function(e) {
         var height = editor.getSession().getScreenLength();
-        $editor.height(19 * height + 'px');
+        $editor.height(20 * height + 'px');
         editor.resize();
     });
 
@@ -41,6 +41,7 @@ jQuery(function() {
         }
 
         inProgress = true;
+        $("#ajax" ).show();
 
         $.ajax({
             url: (isLocal) ? 'eval.php' : 'http://users.encs.concordia.ca/~i_puszta/eval.php',
@@ -66,17 +67,10 @@ jQuery(function() {
             },
             complete: function() {
                 inProgress = false;
+                $("#ajax" ).hide();
             }
         });
     };
-
-    $(document).ajaxStart(function() {
-        $("#ajax" ).show();
-    });
-
-    $(document).ajaxStop(function() {
-        $("#ajax" ).hide();
-    });
 
     $('#next').on('click', function() {
         window.location.hash = ++slide;
