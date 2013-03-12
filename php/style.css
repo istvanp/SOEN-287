@@ -14,7 +14,7 @@ a {
 a:hover {
     color: #c90;
 }
-code, pre {
+code, pre, #output.pre {
 	font-family: Menlo, Monaco, "Lucida Console", "Courier New", monospace;
 }
 code {
@@ -47,7 +47,7 @@ kbd {
 }
 #controls {
 	float: right;
-	margin: 5px;
+	margin: 0 20px;
 }
 button {
 	background: #fc9;
@@ -89,10 +89,14 @@ button[disabled], button[disabled]:hover, button[disabled]:active {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	float: left;
+    font-family: Arial, sans-serif;
 	margin: 0 0 2% 0;
 	min-height: 44px;
 	padding: 10px;
 	width: 48%;
+}
+#output.pre {
+    white-space: pre;
 	word-wrap: break-word;
 }
 #ajax {

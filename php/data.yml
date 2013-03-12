@@ -7,7 +7,7 @@
         </ul>
         <h2>Documentation</h2>
         PHP has a pretty decent documentation. Use it!<br>
-        <a href="http://www.php.net/manual/en/">http://www.php.net/</a>
+        <a target="_blank" href="http://www.php.net/manual/en/">http://www.php.net/</a>
   php: |
         <?php
             echo "Hello World!";
@@ -31,7 +31,7 @@
 
         `echo` is the most common way to print something out. It isn't a function per se (it is a language construct), but it can take multiple arguments separated by commas which will end up being concatenated.
 
-        <a href="http://www.php.net/manual/en/function.echo.php">echo at php.net</a>
+        <a target="_blank" href="http://www.php.net/manual/en/function.echo.php">echo at php.net</a>
   php: |
         <?php
             echo "This ", "will be concatenated.";
@@ -41,14 +41,14 @@
 - title: "Output shorthand"
   desc: |
         Sometimes you just need to print a single variable or string using PHP. There is a shorter way than using `echo`: <br>
-        <small>Note: This will only work if you have <a href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> enabled in your PHP configuration.</small>
+        <small>Note: This will only work if you have <a target="_blank" href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag">short_open_tag</a> enabled in your PHP configuration.</small>
   php: <?= "Print this" ?>
   output: Print this
 - title: "Output using `print`"
   desc: |
         `print`, contrary to `echo`, only takes a single argument but can work as an expression. `echo` is also slightly faster.
 
-        <a href="http://www.php.net/manual/en/function.print.php">print at php.net</a>
+        <a target="_blank" href="http://www.php.net/manual/en/function.print.php">print at php.net</a>
   php: |
         <?php
             (true) ? print "yes" : print "false";
@@ -59,7 +59,7 @@
   desc: |
         Anything that is not inside `<?php &hellip; ?>` tags in PHP is sent directly to the browser. Therefore, you can simply close and open the php tags to send the output. (And yes, doing this works <u>anywhere</u>, even inside functions.)
         <p>
-        Due to this, always be wary of whitespace before and after the open and close php tags. (Some features like changing a <a href="http://www.php.net/manual/en/function.header.php">response header</a> require that no output is sent before being used.) A good convention is to omit the <b>last closing</b> PHP tag (slides from now on do this).
+        Due to this, always be wary of whitespace before and after the open and close php tags. (Some features like changing a <a target="_blank" href="http://www.php.net/manual/en/function.header.php">response header</a> require that no output is sent before being used.) A good convention is to omit the <b>last closing</b> PHP tag (slides from now on do this).
         </p>
   php: |
         <?php echo "Hello " ?>
@@ -214,8 +214,8 @@
 - title: "`NULL`, `unset()`, `isset()`"
   desc: |
         A variable that has been declared but not assigned a value is `NULL` by default.<br>
-        <a href="http://www.php.net/manual/en/function.isset.php">`isset()`</a> can be used to check if a variable is set or not.<br>
-        <a href="http://www.php.net/manual/en/function.unset.php">`unset()`</a> can be used to unset (destroy) a variable.
+        <a target="_blank" href="http://www.php.net/manual/en/function.isset.php">`isset()`</a> can be used to check if a variable is set or not.<br>
+        <a target="_blank" href="http://www.php.net/manual/en/function.unset.php">`unset()`</a> can be used to unset (destroy) a variable.
   php: |
        <?php
 
@@ -248,7 +248,7 @@
 - title: "Arithmetic"
   desc: |
         Available operators for arithmetic in PHP are: `+`, `-`, `*`, `/`, `%`, `++`, `--`.<br>
-        Math function are available as well. <a href="http://www.php.net/manual/en/ref.math.php">See the complete list &raquo;</a>
+        Math function are available as well. <a target="_blank" href="http://www.php.net/manual/en/ref.math.php">See the complete list &raquo;</a>
   php: |
        <?php
        $i = 0;
@@ -364,7 +364,7 @@
 - title: "String Operations"
   desc: |
         Many string functions are made available in the form of procedural functions.
-        <a href="http://www.php.net/manual/en/ref.strings.php">See the complete list &raquo;</a>
+        <a target="_blank" href="http://www.php.net/manual/en/ref.strings.php">See the complete list &raquo;</a>
   php: |
        <?php
        $str = "The quick brown fox jumps over the lazy dog.";
@@ -856,7 +856,7 @@
             <tbody class="tbody">
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.array-multisort.php" class="function">array_multisort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.array-multisort.php" class="function">array_multisort()</a></span>
                     </td>
                     <td>
                         value
@@ -868,12 +868,12 @@
                         first array or sort options
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.array-walk.php" class="function">array_walk()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.array-walk.php" class="function">array_walk()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
                     </td>
                     <td>
                         value
@@ -885,12 +885,12 @@
                         low to high
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.arsort.php" class="function">arsort()</a></span>
                     </td>
                     <td>
                         value
@@ -902,12 +902,12 @@
                         high to low
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.krsort.php" class="function">krsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.krsort.php" class="function">krsort()</a></span>
                     </td>
                     <td>
                         key
@@ -919,12 +919,12 @@
                         high to low
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.ksort.php" class="function">ksort()</a></span>
                     </td>
                     <td>
                         key
@@ -936,12 +936,12 @@
                         low to high
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.asort.php" class="function">asort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
                     </td>
                     <td>
                         value
@@ -953,12 +953,12 @@
                         natural, case insensitive
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.natsort.php" class="function">natsort()</a></span>
                     </td>
                     <td>
                         value
@@ -970,12 +970,12 @@
                         natural
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.natcasesort.php" class="function">natcasesort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
                     </td>
                     <td>
                         value
@@ -987,12 +987,12 @@
                         high to low
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.shuffle.php" class="function">shuffle()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.shuffle.php" class="function">shuffle()</a></span>
                     </td>
                     <td>
                         value
@@ -1004,12 +1004,12 @@
                         random
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.array-rand.php" class="function">array_rand()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.array-rand.php" class="function">array_rand()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.sort.php" class="function">sort()</a></span>
                     </td>
                     <td>
                         value
@@ -1021,12 +1021,12 @@
                         low to high
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.rsort.php" class="function">rsort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
                     </td>
                     <td>
                         value
@@ -1038,12 +1038,12 @@
                         user defined
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.uksort.php" class="function">uksort()</a></span>
                     </td>
                     <td>
                         key
@@ -1055,12 +1055,12 @@
                         user defined
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.usort.php" class="function">usort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.usort.php" class="function">usort()</a></span>
                     </td>
                     <td>
                         value
@@ -1072,13 +1072,13 @@
                         user defined
                     </td>
                     <td>
-                        <span class="function"><a href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
+                        <span class="function"><a target="_blank" href="http://php.net/manual/en/function.uasort.php" class="function">uasort()</a></span>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="http://www.php.net/manual/en/array.sorting.php">See docs &raquo;</a>
+        <a target="_blank" href="http://www.php.net/manual/en/array.sorting.php">See docs &raquo;</a>
   php: |
        <?php
 
@@ -1108,9 +1108,403 @@
        // now $arr1 and $arr3 are the same
        print_r($arr1); 
        print_r($arr3);
+- title: "Constants"
+  desc: |
+        You can declare variable to be constants in PHP.
+        Constants cannot change value during the execution of the script.
+        
+        Use `defined()` to check if a constant was defined.
+  php: |
+       <?php
+       define('MAX', 10);
+       const MIN = 0; // PHP 5.3.0+
+       var_dump(MAX, MIN);
+       
+       define('MAX', 20); // illegal redefinition
+       #MAX = 20; // parse error
+       
+       // Case sensitivity
+       define('TMP_FOLDER', '/tmp', true);
+       var_dump(TMP_FOLDER, TMP_folder);
+       
+       // Undefined constant
+       var_dump(IMG_FOLDER);
+       
+       (defined('IMG_FOLDER')) ? print "defined" : print "undefined";
+  output: |
+          int(10)
+          int(0)
+
+
+          Notice:  Constant MAX already defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
+
+          string(4) "/tmp"
+          string(4) "/tmp"
+
+
+          Notice:  Use of undefined constant IMG_FOLDER - assumed 'IMG_FOLDER' in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 14
+
+          string(10) "IMG_FOLDER"
+          undefined
+- title: "Static variables"
+  desc: |
+        Static variables exist only in a local function scope, but do not lose their value when program execution leaves its scope.
+        
+        The value at declaration cannot be an expression as static declarations are resolved in compile-time.
+  php: |
+       <?php
+       
+       function counter() {
+           static $i = 0; // try 0 + 0 as value
+           $i++;
+           if ($i > 2) {
+               echo $i;
+           }
+       }
+       
+       counter();
+       counter();
+       counter();
+  output: |
+          int(10)
+          int(0)
+
+
+          Notice:  Constant MAX already defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
+
+          string(4) "/tmp"
+          string(4) "/tmp"
+
+
+          Notice:  Use of undefined constant IMG_FOLDER - assumed 'IMG_FOLDER' in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 14
+
+          string(10) "IMG_FOLDER"
+          undefined
+- title: "Functions: declaration"
+  desc: |
+        Functions in PHP have case insensitive names and can have an arbitrary number of arguments.
+        You do not need to declare the function before using it: it can be defined later in the document.
+  php: |
+       <?php
+       
+       $sum = add(2, 5);
+       
+       function add($a, $b) {
+           return $a + $b;
+       }
+  output: false
+- title: "Functions: parameters"
+  desc: |
+        If you supply less than the required parameters, PHP will throw a warning and notices about the parameter variables that are being referenced but undefined.
+        
+        Supplying more variables than in the definition is simply ignored.
+  php: |
+       <?php
+       
+       function add($a, $b) {
+           return $a + $b;
+       }
+       
+       // Right amount of params
+       echo ADD(2, 5), "\n";
+       
+       // Missing params
+       echo add(), "\n";
+       
+       // Extra params
+       echo add(1, 2, 3), "\n";
+  output: |
+          7
+
+
+          Warning:  Missing argument 1 for add(), called in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 11 and defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 3
+
+
+
+          Warning:  Missing argument 2 for add(), called in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 11 and defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 3
+
+
+
+          Notice:  Undefined variable: a in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 4
+
+
+
+          Notice:  Undefined variable: b in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 4
+
+          0
+          3
+- title: "Functions: overloading"
+  desc: |
+        Overloading in PHP is not possible and throws a fatal error.
+  php: |
+       <?php
+       
+       function add($a, $b) {
+       }
+       
+       function add($a, $b) {
+           return $a + $b;
+       }
+  output: |
+          Fatal error:  Cannot redeclare add() (previously declared in
+          /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code:3) in
+          /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 8
+- title: "Functions: nesting"
+  desc: |
+        You can nest functions in PHP. Note however that the nested functions must be defined before they can be used.
+  php: |
+       <?php
+       
+       function calc_sum() {
+           #add(2, 2); // Will not work
+           function add($a, $b) {
+               return $a + $b;
+           }
+           return add(2, 4);
+       }
+       
+       echo calc_sum();
+  output: 6
+- title: "Functions: pass-by-value vs pass-by-reference"
+  desc: |
+        Parameters in PHP are passed by value (i.e. a copy) by default.
+        
+        To pass by reference instead, you can add an ampersand (`&`) in front of the variable name (e.g. `&$var`).
+  php: |
+       <?php
+       
+       // Try changing $value to &$value
+       function increment($value) {
+           $value = $value + 1;
+       }
+       
+       $val = 1;
+       increment($val);
+       
+       var_dump($val);
+  output: int(1)
+- title: "Functions: return"
+  desc: |
+        PHP allows you to return any data type, including arrays and objects. You can even return a reference by adding an ampersand (`&`) in front of the function name.
+        
+        If you do not use the `return` keyword, nothing is returned.
+  php: |
+       <?php
+       
+       // prepend() returns a reference to the $str variable that
+       // was created in the function instead of a copy of the value
+       function &prepend($str) {
+           $str = "_" . $str;
+           return $str;
+       }
+       
+       $result = prepend('test');
+       
+       var_dump($result);
+  output: string(5) "_test"
+- title: "Variable scope"
+  desc: |
+        Variables are always bound to the function scope.
+        
+        To access the global scope, you must use the `global` keyword with the variable name to redefine the variable under the current scope.
+        
+        You could also just use the `$GLOBALS` predefined variable to access variables defined in the global scope (this is not recommended however).
+        
+        <a target="_blank" href="http://www.php.net/manual/en/language.variables.scope.php">
+          More at php.net &raquo;</a>
+  php: |
+       <?php
+       
+       $local1 = "local1";
+       $local2 = "local2";
+       
+       function test_scope() {
+           global $local2, $newvar;
+           
+           $local3 = "local3";
+           $newvar = "in func";
+           
+           echo $local1, "\n"; // not in scope
+           echo $local2, "\n";
+           echo $GLOBALS['local1'], "\n"; // alternative
+       }
+       
+       test_scope();
+       echo $local3; // not in scope
+       echo $newvar;
+  output: |
+          Notice:  Undefined variable: local1 in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 13
+
+
+          local2
+          local1
+
+
+          Notice:  Undefined variable: local3 in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 19
+
+          in func
+
+- title: "Pattern matching"
+  desc: |
+  
+        <ul>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-filter.php">preg_filter</a> — Perform a regular expression search and replace
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-grep.php">preg_grep</a> — Return array entries that match the pattern
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-last-error.php">preg_last_error</a> — Returns the error code of the last PCRE regex execution
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-match-all.php">preg_match_all</a> — Perform a global regular expression match
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-match.php">preg_match</a> — Perform a regular expression match
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-quote.php">preg_quote</a> — Quote regular expression characters
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-replace-callback.php">preg_replace_callback</a> — Perform a regular expression search and replace using a callback
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-replace.php">preg_replace</a> — Perform a regular expression search and replace
+          </li>
+          <li>
+            <a target="_blank" href="http://www.php.net/manual/en/function.preg-split.php">preg_split</a> — Split string by a regular expression
+          </li>
+        </ul>        
+        <h2>`preg_match`</h2>
+        Returns true or false if a string matches the regular expression. Optionally, it can return the matches (capturing parentheses' content) if you supply a third parameter.
+        
+  php: |
+       <?php
+       
+       preg_match('/^(?:http:\/\/)?([^\/]+)/i',
+           "http://users.encs.concordia.ca/index.html", $matches);
+       $host = $matches[1];
+       
+       echo $host;
+  output: users.encs.concordia.ca
+- title: "Pattern matching: `preg_split`"
+  desc: |
+        If you want to use the power of regular expressions to split a string you can use `preg_split` instead of `explode`.
+  php: |
+       <?php
+
+       $str = "The quick brown fox jumps over the lazy dog.";
+
+       $arr = preg_split('/( |\.)/', $str);
+
+       print_r($arr);
+  output: |
+          Array
+          (
+              [0] => The
+              [1] => quick
+              [2] => brown
+              [3] => fox
+              [4] => jumps
+              [5] => over
+              [6] => the
+              [7] => lazy
+              [8] => dog
+              [9] => 
+          )
+- title: "Classes and Objects"
+  desc: |
+        Starting PHP version 5, a lot of Object Oriented Programming concepts are available in PHP. (Version 4 had very limited OOP concepts.) Here are some concepts that are available in version 5.1+:
+        <ul>
+          <li>Class constants</li>
+          <li>Constructors & destructors</li>
+          <li>Visibility (public, protected, private)</li>
+          <li>`static` and `final` keywords</li>
+          <li>Class abstraction</li>
+          <li>Interfaces</li>
+          <li>Inheritance</li>
+          <li>Overloading</li>
+          <li>Type hinting</li>
+        </ul>
+        <a target="_blank" href="http://www.php.net/manual/en/language.oop5.php">
+          Full docs at php.net &raquo;</a>
+  php: |
+        <?php
+        class SimpleClass
+        {
+            // property declaration
+            private $var = 'a default value';
+    
+            // constructor declaration
+            public function __construct($var) {
+                $this->var = $var;
+            }
+
+            // method declaration
+            public function displayVar() {
+                echo $this->var;
+            }
+    
+            public function &getVar() {
+                return $this->var;
+            }
+    
+            public function setVar($newValue) {
+                $this->var = $newValue;
+            }
+        }
+
+        $sc = new SimpleClass("Hi");
+        $sc->displayVar();
+
+        $var = &$sc->getVar();
+        $sc->setVar('Bye');
+
+        echo $var;
+
+
+        $sc->var = 'Ciao'; // not allowed because var is private
+  output: |
+          HiBye
+
+          Fatal error:  Cannot access private property SimpleClass::$var in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 35
+
+- title: "Classes: type hinting"
+  desc: |
+        You can force parameters to be of a certain type of object in PHP.
+        
+        You cannot however specify a scalar like `int` or `string`. You should use <a href="#19">is_* predicates</a> to check their type instead.
+  php: |
+        <?php
+
+        class User {
+            public $name;
+   
+            public function __construct(Name $name) {
+                $this->name = $name;
+            }
+        }
+
+        class Name {
+            public $first;
+            public $last;
+    
+            public function __construct($first, $last) {
+                $this->first = $first;
+                $this->last = $last;
+            }
+        }
+
+        $user1 = new User(new Name('Obi-Wan', 'Kenobi'));
+        $user2 = new User('R2-D2'); // Not of type Name
+        
+  output: |
+          Catchable fatal error:  Argument 1 passed to User::__construct() must be an instance of Name, string given, called in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 22 and defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
+          
 - title: "Predefined Variables"
   desc: |
-        PHP provides nine "<a href="http://www.php.net/manual/en/language.variables.superglobals.php">superglobals</a>" (accessible globally):
+        PHP provides nine "<a target="_blank" href="http://www.php.net/manual/en/language.variables.superglobals.php">superglobals</a>" (accessible globally):
         <ul>
           <li>`GLOBALS` contains all variables in the global scope</li>
           <li>`_GET` data sent to the PHP script via a GET request</li>
@@ -1127,3 +1521,45 @@
        echo htmlspecialchars(print_r($_GET, 1));
        print_r($_SERVER);
   output: false
+- title: "Working with forms"
+  pre: false
+  desc: |
+        PHP can be used to process forms. All you need to do is to set the action attribute of the form to the PHP document that will handle the processing of the form data. This document can be the same as the document that was used to output the form.
+        
+        <h2>Retrieving values</h2>
+        Depending how the request was sent, you can retrieve the form values that the user inputed via `$_GET` or `$_POST` and use the names of the input fields as the keys. PHP also provides the `$_REQUEST` global variable which merges both into one as convenience.
+        
+        <h2>Checkboxes</h2>
+        Because we may want to use checkboxes for multiple choice, we would prefer to receive the data as an array instead of having to assign unique names to each checkbox (otherwise only one value is returned). In PHP you can simply have the name of each group of checkboxes appended with a `[]` and the results will be return as array.
+  php: |
+       <form action="http://users.encs.concordia.ca/~i_puszta/echo.php"
+             method="POST" target="_blank">
+         <label>
+           Name:
+           <input type="text" name="name" />
+         </label><br/><br/>
+         <label>
+           <input type="radio" name="gender" value="m" /> Male
+         </label>
+         <label>
+           <input type="radio" name="gender" value="f" /> Female
+         </label><br/><br/>
+         Interests:<br/>
+         <label><input type="checkbox" name="interests[]"
+           value="art" /> Art</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="books" /> Books</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="fashion" /> Fashion</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="gaming" /> Gaming</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="tech" /> Technology</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="travel" /> Travel</label><br/>
+         <label><input type="checkbox" name="interests[]"
+           value="other" /> Other</label><br/>
+         <p>
+           <input type="submit" />
+         </p>
+       </form>

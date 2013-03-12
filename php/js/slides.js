@@ -49,8 +49,13 @@ jQuery(function() {
             dataType: 'jsonp',
             jsonpCallback: 'callback',
             success: function(_data) {
+                if (_data === "") {
+                    _data = '<h3 style="text-align:center"><em>No output</em></h3>';
+                }
+                
                 $output.html(_data);
                 previousCode = code;
+                
                 if (testOutput &&
                     testOutput.toString().rtrim() != _data.toString().rtrim()) {
                     alert('Must update output in YAML');
@@ -109,6 +114,7 @@ jQuery(function() {
             var title = data[slide - 1].title,
                 desc = data[slide - 1].desc,
                 php = data[slide - 1].php,
+                pre = data[slide - 1].pre,
                 output = data[slide - 1].output || '<em>No output available for this slide</em>',
                 src,
                 re = /`([^`]*)`/g,
@@ -136,11 +142,18 @@ jQuery(function() {
                                       '</code>';
                            });
             }
+            
             $title.html(title);
             $desc.html(desc || '');
 
             editor.setValue(php);
             editor.gotoLine(1);
+            
+            if (pre === false) {
+                $output.removeClass('pre');                
+            } else {
+                $output.addClass('pre');
+            }
 
             if (doTest) {
                 evaluate(data[slide - 1].output);
