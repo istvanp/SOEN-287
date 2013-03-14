@@ -1146,40 +1146,6 @@
 
           string(10) "IMG_FOLDER"
           undefined
-- title: "Static variables"
-  desc: |
-        Static variables exist only in a local function scope, but do not lose their value when program execution leaves its scope.
-        
-        The value at declaration cannot be an expression as static declarations are resolved in compile-time.
-  php: |
-       <?php
-       
-       function counter() {
-           static $i = 0; // try 0 + 0 as value
-           $i++;
-           if ($i > 2) {
-               echo $i;
-           }
-       }
-       
-       counter();
-       counter();
-       counter();
-  output: |
-          int(10)
-          int(0)
-
-
-          Notice:  Constant MAX already defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
-
-          string(4) "/tmp"
-          string(4) "/tmp"
-
-
-          Notice:  Use of undefined constant IMG_FOLDER - assumed 'IMG_FOLDER' in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 14
-
-          string(10) "IMG_FOLDER"
-          undefined
 - title: "Functions: declaration"
   desc: |
         Functions in PHP have case insensitive names and can have an arbitrary number of arguments.
@@ -1343,7 +1309,40 @@
           Notice:  Undefined variable: local3 in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 19
 
           in func
+- title: "Static variables"
+  desc: |
+        Static variables exist only in a local function scope, but do not lose their value when program execution leaves its scope.
+        
+        The value at declaration cannot be an expression as static declarations are resolved in compile-time.
+  php: |
+       <?php
+       
+       function counter() {
+           static $i = 0; // try 0 + 0 as value
+           $i++;
+           if ($i > 2) {
+               echo $i;
+           }
+       }
+       
+       counter();
+       counter();
+       counter();
+  output: |
+          int(10)
+          int(0)
 
+
+          Notice:  Constant MAX already defined in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 6
+
+          string(4) "/tmp"
+          string(4) "/tmp"
+
+
+          Notice:  Use of undefined constant IMG_FOLDER - assumed 'IMG_FOLDER' in /Users/istvanp/Repositories/tutorials/php/eval.php(4) : eval()'d code on line 14
+
+          string(10) "IMG_FOLDER"
+          undefined
 - title: "Pattern matching"
   desc: |
   
@@ -1531,7 +1530,7 @@
         
         <h2>Checkboxes</h2>
         <p>Because we may want to use checkboxes for multiple choice, we would prefer to receive the data as an array instead of having to assign unique names to each checkbox (otherwise only one value is returned). In PHP you can simply have the name of each group of checkboxes appended with a `[]` and the results will be return as array.</p>
-        <a href="http://users.encs.concordia.ca/~i_puszta/tutorials/php/scripts/49.php">Submit to the same page example &raquo;</a>
+        <a target="_blank" href="http://users.encs.concordia.ca/~i_puszta/tutorials/php/scripts/49.php">Submit to the same page example &raquo;</a> (<a target="_blank" href="http://users.encs.concordia.ca/~i_puszta/tutorials/php/scripts/49.phps">code</a>)
   php: |
        <form action="http://users.encs.concordia.ca/~i_puszta/echo.php"
              method="POST" target="_blank">
