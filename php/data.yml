@@ -1530,7 +1530,8 @@
         Depending how the request was sent, you can retrieve the form values that the user inputed via `$_GET` or `$_POST` and use the names of the input fields as the keys. PHP also provides the `$_REQUEST` global variable which merges both into one as convenience.
         
         <h2>Checkboxes</h2>
-        Because we may want to use checkboxes for multiple choice, we would prefer to receive the data as an array instead of having to assign unique names to each checkbox (otherwise only one value is returned). In PHP you can simply have the name of each group of checkboxes appended with a `[]` and the results will be return as array.
+        <p>Because we may want to use checkboxes for multiple choice, we would prefer to receive the data as an array instead of having to assign unique names to each checkbox (otherwise only one value is returned). In PHP you can simply have the name of each group of checkboxes appended with a `[]` and the results will be return as array.</p>
+        <a href="http://users.encs.concordia.ca/~i_puszta/tutorials/php/scripts/49.php">Submit to the same page example &raquo;</a>
   php: |
        <form action="http://users.encs.concordia.ca/~i_puszta/echo.php"
              method="POST" target="_blank">
