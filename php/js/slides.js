@@ -36,7 +36,7 @@ jQuery(function() {
 
         var code = editor.getValue();
 
-        if (previousCode === code) {
+        if ( ! code || code.trim().length === 0 || previousCode === code) {
             return;
         }
 
@@ -52,7 +52,7 @@ jQuery(function() {
                 if (_data === "") {
                     _data = '<h3 style="text-align:center"><em>No output</em></h3>';
                 }
-                
+
                 $output.html(_data);
                 previousCode = code;
                 
@@ -95,9 +95,16 @@ jQuery(function() {
 
         slide = parseInt(slideResult[1], 10);
 
-        // Jump to slide 1
+
+        // Jump to first slide
         if (isNaN(slide) || slide < 1) {
             window.location.hash = '1';
+            return;
+        }
+
+        // Jump to last slide
+        if (slide > data.length) {
+            window.location.hash = data.length;
             return;
         }
 
@@ -128,10 +135,11 @@ jQuery(function() {
             title = slide + ". " + (title || 'No title');
             if (desc) {
                 desc = desc.replace(/& /g,'&amp; ')
-                           .replace(/\n[\t ]*\n/g, "<br>")
+                           .replace(/\n\n/g, "<br>")
                            .replace(/```([^`]*)```/g, function(match, p1) {
                                return '<pre class="prettyprint">' +
-                                      p1.replace(/</g, '&lt;')
+                                      p1.replace(/<br>/g, "\n\n")
+                                        .replace(/</g, '&lt;')
                                         .replace(/>/g, '&gt;') +
                                       '</pre>';
                            })

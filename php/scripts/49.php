@@ -2,14 +2,27 @@
 <pre>
 <?php
     if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
         print_r($_POST);
+    }
+    
+    function check($name, $value)
+    {
+        if (isset($_POST[$name]))
+        {
+            if (in_array($value, $_POST[$name]))
+            {
+                print 'checked="checked"';
+            }
+        }
+    }
 ?>
 </pre>
-<form action="/tutorials/php/scripts/49.php"
+<form action="49.php"
       method="POST">
   <label>
     Name:
-    <input type="text" name="name" />
+    <input type="text" name="name" value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>" />
   </label><br/><br/>
   <label>
     <input type="radio" name="gender" value="m" /> Male

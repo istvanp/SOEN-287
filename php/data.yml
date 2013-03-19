@@ -1563,3 +1563,262 @@
            <input type="submit" />
          </p>
        </form>
+- title: "`include()` directive"
+  desc: |
+        To help organize your code better, you can use the `include()`, `include_once()`, `require()` or `require_once()` functions to include external PHP documents into another. The content of these files can be HTML or PHP or a mixture of both. You could use it even to always include the same header and footer for all your web pages.
+        <p>
+          <a target="_blank" href="http://users.encs.concordia.ca/~i_puszta/header.inc.php">header.inc.php &raquo;</a><br>
+          <a target="_blank" href="http://users.encs.concordia.ca/~i_puszta/footer.inc.php">footer.inc.php &raquo;</a>
+        </p>
+  php: |
+       <?php include('header.inc.php'); ?>
+       <h2>My Page</h2>
+       <?php include('footer.inc.php'); ?>
+  pre: false
+  output: |
+          <h1>My Website</h1>
+          <h2>My Page</h2>
+          © 2013 My Website.
+- title: "Cookies"
+  desc: |
+        Cookies allow you to save limited amount of information into a visitor's browser. Here are a few things to note about cookies:
+        <ul>
+            <li>They are created when you visit a web page.</li>
+            <li>They may persist only until you exit your browser (referred to as session cookies).</li>
+            <li>They otherwise persist for a predetermined amount of time (as set by the developer).</li>
+            <li>They are not transferrable to another domain (or even subdomain in some cases), another browser client or computer.</li>
+            <li>They may be destroyed by the user (by clearing cookies in their browser).</li>
+            <li>They can be forged (modified by users maliciously).</li>
+            <li>The information stored in the cookie is sent on every GET request you make, even when loading an image.</li>
+            <li>Up to 4KB of data (about 600 words long text) can be contained in the cookie.</li>
+        </ul>
+        <h2>`setcookie()`</h2>
+        `bool setcookie ( string $name [, string $value [, int $expire = 0 [, string $path [, string $domain [, bool $secure = false [, bool $httponly = false ]]]]]] )`<br>
+        The first parameter is the name of the cookie, then the value and then the expire time (as a UNIX timstamp format). If you do not specify a expire time, the cookie will become a session cookie (deleted when the user closes the browser).
+        <p>
+          <a target="_blank" href="http://ca3.php.net/manual/en/function.setcookie.php">setcookie()</a><br>
+          <a target="_blank" href="http://ca3.php.net/manual/en/function.time.php">time() &raquo;</a><br>
+          <a target="_blank" href="http://ca3.php.net/manual/en/function.mktime.php">mktime() &raquo;</a><br>
+        </p>
+  php: |
+       <?php
+
+       if ( ! isset($_COOKIE['mycookie']))
+       {
+           $value = date(DATE_RFC822); // Tue, 19 Mar 13 12:35:47 -0400
+
+           setcookie("mycookie", $value); // A session cookie
+           setcookie("mycookie", $value, time() + 60 * 60); // Expires in 1 hour
+
+           echo "This is your first visit!";
+       }
+       else
+       {
+           echo "First visit was on " . $_COOKIE['mycookie'];
+       }
+- title: "Deleting a cookie"
+  desc: |
+        To delete a cookie, you simply must set it again with a time that is in the past. The browser will then proceed to delete the cookie.
+
+        The value of the cookie does not have to be the same.
+  php: |
+       <?php
+       
+       setcookie("mycookie", "", 0);
+       // Go back to the previous slide and see that it worked!
+- title: "Sending content before modifiying headers"
+  desc: |
+        You are unable to call functions that modifiy the HTTP response headers such as <a target="_blank" href="http://ca3.php.net/manual/en/function.header.php">`header()`</a>, <a href="http://php.net/manual/en/function.session-start.php" target="_blank">`session_start()`</a> and `setcookie()`.
+
+
+        
+        <strong>Note:</strong> The example code the runs on this page will work due to the way these interactive slides work.
+
+        <a href="http://users.encs.concordia.ca/~i_puszta/setcookie2.php" target="_blank">See the same code in a new window instead.</a>
+
+  php: |
+       <h1>Content sent before modifying headers</h1>
+       No cookies will be saved.
+       <?php setcookie("foo", "bar"); ?>
+  output: |
+          Content sent before modifying headers
+
+          No cookies will be saved. Warning: Cannot modify header information - headers already sent by (output started at /nfs/home/i/i_puszta/setcookie2.php:3) in /nfs/home/i/i_puszta/setcookie2.php on line 3
+- title: "PHP Sessions"
+  desc: |
+        Sessions are similar to cookies as they allow arbitrary data to be stored about a user or client. The difference however is that the information is not saved in the client's browser but on the server side, which of course is more secure. The other advantage is the there is no limit in how much information you save.
+        <p>
+          <a href="http://php.net/manual/en/function.session-start.php" target="_blank">session_start() &raquo;</a>
+        </p>
+  php: |
+       <?php
+       session_start(); // Needed in order to store the session ID into a cookie
+
+       if ( ! isset($_SESSION['first_visit']))
+       {
+           $value = date(DATE_RFC822); // Tue, 19 Mar 13 12:35:47 -0400
+
+           $_SESSION['first_visit'] = $value;
+
+           echo "This is your first visit!";
+       }
+       else
+       {
+           echo "First visit was on " . $_SESSION['first_visit'];
+       }
+
+- title: "Deleting a session variable"
+  desc: |
+        Simply call unset() on the key in `$_SESSION`.
+  php: |
+       <?php
+       session_start();
+
+       $_SESSION['now'] = time();
+       print_r($_SESSION);
+
+       unset($_SESSION['now']);
+       print_r($_SESSION);
+- title: "Destroying sessions"
+  desc: |
+        `session_destroy()` destroys all of the data associated with the current session. It does not unset any of the global variables associated with the session, or unset the session cookie.
+
+        In order to kill the session altogether, like to log the user out, the session id must also be unset. If a cookie is used to propagate the session id (default behavior), then the session cookie must be deleted. `setcookie()` may be used for that.
+        <p>
+          <a href="http://php.net/manual/en/function.session-destroy.php" target="_blank">session_destroy() &raquo;</a>
+        </p>
+  php: |
+       <?php
+       session_start();
+
+       print_r($_SESSION);
+
+       $_SESSION = array(); // Delete ALL the data
+       session_destroy(); // Now destroy the session
+
+       print_r($_SESSION);
+- title: "Reading a file"
+  desc: |
+        The easiest way to read a file is to use the `file_get_contents()` function. It will read the entire file into a string. It can even fetch web page contents.
+
+        <p>
+          <a href="http://php.net/manual/en/function.file-get-contents.php" target="_blank">file_get_contents() &raquo;</a>
+        </p>
+  php: |
+       <?php
+
+       $file   = file_get_contents('input.txt');
+       $google = file_get_contents('http://www.google.com/humans.txt');
+       
+       echo $file, "\n\n<hr>\n", $google;
+- title: "Reading a file: complicated edition"
+  desc: |
+        If you need more control, you can use `fopen()` to get a handle on the file then `fread()` to read bytes from it.
+
+        <h2>One character at a time</h2>
+        To read only a single character at a time, use `fgetc()`.
+        ```
+        <?php
+        $fp = fopen('somefile.txt', 'r');
+        if (!$fp) {
+            echo 'Could not open file somefile.txt';
+        }
+        while (false !== ($char = fgetc($fp))) {
+            echo "$char\n";
+        }
+        ```
+        <h2>Jumping ahead</h2>
+        You might want to partially read a file by jumping to a certain byte offset. To do so use `fseek()`.
+        ```
+        <?php
+        $fp = fopen('somefile.txt', 'r');
+
+        // read some data
+        $data = fgets($fp, 4096);
+
+        // move back to the beginning of the file
+        // same as rewind($fp);
+        fseek($fp, 0);
+        ```
+        <p>
+          <a href="http://php.net/manual/en/function.fopen.php" target="_blank">fopen() &raquo;</a><br>
+          <a href="http://php.net/manual/en/function.fread.php" target="_blank">fread() &raquo;</a><br>
+          <a href="http://php.net/manual/en/function.fseek.php" target="_blank">fseek() &raquo;</a><br>
+          <a href="http://php.net/manual/en/function.fgetc.php" target="_blank">fgetc() &raquo;</a><br>
+          <a href="http://php.net/manual/en/function.fclose.php" target="_blank">fclose() &raquo;</a>
+        </p>
+  php: |
+       <?php
+       $filename = "input.txt";
+       $handle = fopen($filename, "r");
+       $contents = fread($handle, filesize($filename));
+       fclose($handle);
+ 
+       echo $contents;
+
+- title: "Writing to a file"
+  desc: |
+        The easiest way to write to a file is to use the `file_put_contents()` function. It will write your string into the specified filename.
+
+        <p>
+          <a href="http://php.net/manual/en/function.file-put-contents.php" target="_blank">file_put_contents() &raquo;</a><br>
+          <a href="output.txt" target="_blank">What was (last) written? &raquo;</a>
+        </p>
+  php: |
+       <?php
+
+       $filename = "output.txt";
+       $data = date(DATE_RFC822) . "\n" .
+               $_SERVER['HTTP_USER_AGENT'] . "\n" .
+               $_SERVER['REMOTE_ADDR'];
+
+       if (is_writable($filename))
+       {
+          file_put_contents($filename, $data);
+          echo "Wrote " . strlen($data) . " bytes.";
+       }
+       else
+       {
+          echo "$filename is not writable.";
+       }
+
+- title: "Writing to a file: complicated edition"
+  desc: |
+        If you need more control, you can use `fopen()` to get a handle on the file then `fwrite()` to write bytes to it.
+
+        <p>
+          <a href="http://php.net/manual/en/function.fopen.php" target="_blank">fopen() &raquo;</a><br>
+          <a href="http://php.net/manual/en/function.fwrite.php" target="_blank">fwrite() &raquo;</a><br>
+          <a href="output.txt" target="_blank">What was (last) written? &raquo;</a>
+        </p>
+  php: |
+       <?php
+
+       $filename = "output.txt";
+       $data = date(DATE_RFC822) . "\n" .
+               $_SERVER['HTTP_USER_AGENT'] . "\n" .
+               $_SERVER['REMOTE_ADDR'];
+
+       if (is_writable($filename))
+       {
+           if ( ! $handle = fopen($filename, 'w'))
+           {
+                echo "Cannot open file $filename.";
+                exit;
+           }
+
+           $bytes_written = fwrite($handle, $data);
+
+           if ($bytes_written === FALSE)
+           {
+               echo "Cannot write to file $filename.";
+               exit;
+           }
+
+           echo "Wrote $bytes_written bytes.";
+           fclose($handle);
+       }
+       else
+       {
+          echo "$filename is not writable.";
+       }
