@@ -1762,7 +1762,7 @@
 
         <p>
           <a href="http://php.net/manual/en/function.file-put-contents.php" target="_blank">file_put_contents() &raquo;</a><br>
-          <a href="output.txt" target="_blank">What was (last) written? &raquo;</a>
+          <a href="http://users.encs.concordia.ca/~i_puszta/output.txt" target="_blank">What was (last) written? &raquo;</a>
         </p>
   php: |
        <?php
@@ -1789,7 +1789,7 @@
         <p>
           <a href="http://php.net/manual/en/function.fopen.php" target="_blank">fopen() &raquo;</a><br>
           <a href="http://php.net/manual/en/function.fwrite.php" target="_blank">fwrite() &raquo;</a><br>
-          <a href="output.txt" target="_blank">What was (last) written? &raquo;</a>
+          <a href="http://users.encs.concordia.ca/~i_puszta/output.txt" target="_blank">What was (last) written? &raquo;</a>
         </p>
   php: |
        <?php
