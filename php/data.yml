@@ -1628,8 +1628,11 @@
        // Go back to the previous slide and see that it worked!
 - title: "Sending content before modifiying headers"
   desc: |
-        You are unable to call functions that modifiy the HTTP response headers such as <a target="_blank" href="http://ca3.php.net/manual/en/function.header.php">`header()`</a>, <a href="http://php.net/manual/en/function.session-start.php" target="_blank">`session_start()`</a> and `setcookie()`.
-
+        You are unable to call functions that modifiy the HTTP response headers such as
+        <a target="_blank" href="http://ca3.php.net/manual/en/function.header.php">`header()`</a>,
+        <a href="http://php.net/manual/en/function.session-start.php" target="_blank">`session_start()`</a>
+        and `setcookie()` if you have any sort of output (using echo or otherwise) before calling these.
+        You have to call those functions BEFORE any output for them to work.
 
         
         <strong>Note:</strong> The example code the runs on this page will work due to the way these interactive slides work.
