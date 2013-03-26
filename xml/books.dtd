@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!ELEMENT library (book+)>
+<!ELEMENT book (title,isbn,authors,description,publisher)>
+<!ELEMENT authors (author+) >
+<!ELEMENT author (firstname,lastname)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ATTLIST book category CDATA #REQUIRED>

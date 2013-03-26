@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE library SYSTEM "books.dtd">
+<?xml-stylesheet type="text/css" href="books.css"?>
+<library>
+	<book category="thriller">
+		<title>Daemon</title>
+		<isbn>978-0451228734</isbn>
+		<authors>
+			<author>
+				<firstname>Daniel</firstname>
+				<lastname>Suarez</lastname>
+			</author>
+		</authors>
+		<publisher>Signet</publisher>
+		<description>
+            When a designer of computer games dies, he leaves behind a program that unravels the Internet's interconnected world. It corrupts, kills, and runs independent of human control. It's up to Detective Peter Sebeck to wrest the world from the malevolent virtual enemy before its ultimate purpose is realized: to destroy civilization... 
+        </description>
+	</book>
+	<book category="science-fiction">
+		<title>Neuromancer</title>
+		<isbn>978-0441012039</isbn>
+		<authors>
+			<author>
+				<firstname>William</firstname>
+				<lastname>Gibson</lastname>
+			</author>
+		</authors>
+		<publisher>Ace Hardcover</publisher>
+		<description>
+            Today, there is only one science fiction masterpiece to thank for the term "cyberpunk," for easing the way into the information age and Internet society. Neuromancer's virtual reality has become real. And yet, William Gibson's gritty, sophisticated vision still manages to inspire the minds that lead mankind ever further into the future.
+        </description>
+	</book>
+	<book category="science">
+		<title>On Intelligence</title>
+		<isbn>978-0805078534</isbn>
+		<authors>
+			<author>
+				<firstname>Jeff</firstname>
+				<lastname>Hawkins</lastname>
+			</author>
+			<author>
+				<firstname>Sandra</firstname>
+				<lastname>Blakeslee</lastname>
+			</author>
+		</authors>
+		<publisher>St. Martin's Griffin</publisher>
+		<description>
+            Jeff Hawkins, the man who created the PalmPilot, Treo smart phone, and other handheld devices, has reshaped our relationship to computers. Now he stands ready to revolutionize both neuroscience and computing in one stroke, with a new understanding of intelligence itself.
+        </description>
+	</book>
+</library>

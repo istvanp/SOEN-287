@@ -1,0 +1,606 @@
+- title: "XML: The Syntax"
+  desc: |
+        <ul>
+          <li>Case sensitive</li>
+          <li>Open tags must be closed (or self-closed like `<br />`)</li>
+          <li>Attribute values must be quoted strings (`""`)</li>
+          <li>Presence of the XML declaration line (`<?xml version="1.0" encoding="UTF-8"?>`) </li>
+          <li>Presence of a root element</li>
+          <li>Proper element nesting</li>
+          <li>Optional reference to
+            <ul>
+              <li>DTD (Document Type Definition)</li>
+              <li>XSD (XML Schema Definition)</li>
+              <li>XML Stylesheet</li>
+              <li>XSLT (EXtensible Stylesheet Language)</li>
+            </ul>
+          </li>
+        </ul>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <!DOCTYPE users [
+         <!ELEMENT users (user)*>
+         <!ELEMENT user (name, birthday?, address?)>
+         <!ATTLIST user
+            id     CDATA         #REQUIRED
+            gender (male|female) #IMPLIED
+         >
+         <!ELEMENT name (#PCDATA)>
+         <!ELEMENT birthday (#PCDATA)>
+         <!ELEMENT address (city, country)>
+         <!ELEMENT city (#PCDATA)>
+         <!ELEMENT country (#PCDATA)>
+       ]>
+       <users>
+         <user id="1" gender="male">
+           <name>Tux The Penguin</name>
+           <birthday>1996-05-02</birthday>
+         </user>
+       </users>
+- title: "Comments"
+  desc: |
+        Like in HTML you can use `<!-- comment -->` for comments.
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <!-- This is a comment -->
+       <book/>
+- title: "Entity References"
+  desc: |
+        <p>In XML you cannot use the `<` or `&` symbols unless you are opening a tag or referencing an entity respectively. If you mean to use these for what they represent, you should use their entity equivalent instead.</p>
+        <table>
+            <caption>Pre-defined enities in XML</caption>
+            <tbody>
+                <tr>
+                    <td>&amp;lt;</td>
+                    <td>&lt;</td>
+                    <td>less than</td>
+                </tr>
+                <tr>
+                    <td>&amp;gt;</td>
+                    <td>&gt;</td>
+                    <td>greater than</td>
+                </tr>
+                <tr>
+                    <td>&amp;amp;</td>
+                    <td>&amp;</td>
+                    <td>ampersand&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&amp;apos;</td>
+                    <td>'</td>
+                    <td>apostrophe</td>
+                </tr>
+                <tr>
+                    <td>&amp;quot;</td>
+                    <td>"</td>
+                    <td>quotation mark</td>
+                </tr>
+            </tbody>
+        </table>
+        We will later see how to define your own when we get to DTDs.
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo>
+         <item>Buy <= 2% skimmed milk</item>
+       </todo>
+- title: "Elements & Attributes"
+  desc: |
+        An element is defined as anything starting from an open tag until the close tag of the same element.<br>
+        Elements can have <strong>attributes</strong> defined in the start tag.<br>
+        Between the open and start tag, an element can contain text or one or more other elements.
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo>
+         <item>Buy &lt;= 2% skimmed milk</item>
+         <item priority="1">Prepare for test on XML</item>
+       </todo>
+- title: "Element or attribute?"
+  desc: |
+
+        ```
+        <person dob="1940-11-27">
+          <firstname>Bruce</firstname>
+          <lastname>Lee</lastname>
+        </person>
+        ```
+        ```
+        <person>
+          <firstname>Bruce</firstname>
+          <lastname>Lee</lastname>
+          <gender>male</gender>
+          <dob>1940-11-27</dob>
+        </person>
+        ```        
+        There is no rule to pick one solution over the other but, generally speaking, elements are a better solution because it allows you to be more explicit.
+        
+        ```
+        <email year="2013" month="01" day="01" to="Audience" from="Tevye" subject="If I were a rich man" body="I wouldn't have to know how to use a computer...">
+        </email>
+        ```
+        
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <person>
+         <firstname>Bruce</firstname>
+         <lastname>Lee</lastname>
+         <gender>male</gender>
+         <dob>
+           <year>1940</year>
+           <month>11</month>
+           <day>27</day>
+         </dob>
+       </person>
+- title: "DTDs"
+  desc: |
+        You are already familiar with Document Type Definitions as you encountered them without knowing when working with (X)HTML.
+        
+        XML by itself cannot check that a document instance contains information that "makes sense" as all it knows is the basic syntax of XML (as seen in <a href="#1">slide 1</a>). With a DTD, you can define how an XML should look like. To define a doctype, add the following declaration:
+        ```
+        <!DOCTYPE root-element [element-declarations]>
+        ```
+        <h2>External DTD file</h2>
+        ```
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE users SYSTEM "users.dtd">
+        <users>
+          <user id="1" gender="male">
+            <name>Tux The Penguin</name>
+            <birthday>1996-05-02</birthday>
+          </user>
+        </users>
+        ```
+        <h2>Embedded DTD</h2>
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE users [
+        <!ELEMENT users (user)*>
+        <!ELEMENT user (name, birthday?, address?)>
+        <!ATTLIST user
+           id     CDATA         #REQUIRED
+           gender (male|female) #IMPLIED
+        >
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT birthday (#PCDATA)>
+        <!ELEMENT address (city, country)>
+        <!ELEMENT city (#PCDATA)>
+        <!ELEMENT country (#PCDATA)>
+      ]>
+      <users>
+        <user id="1" gender="male">
+          <name>Tux The Penguin</name>
+          <birthday>1996-05-02</birthday>
+        </user>
+      </users>
+- title: "DTDs: Elements"
+  desc: |
+        <h2>Syntax</h2>
+        ```
+        <!ELEMENT element-name category>
+        ```
+        ```
+        <!ELEMENT element-name (element-content)>
+        ```
+        <h2>Element name restrictions</h2>
+        <ul>
+          <li>Names can contain letters, numbers, and other characters</li>
+          <li>Names cannot start with a number or punctuation character</li>
+          <li>Names cannot start with the letters xml (or XML, or Xml, etc)</li>
+          <li>Names cannot contain spaces</li>
+        </ul>
+- title: "DTD Element: empty tag"
+  desc: |
+        ```
+        <!ELEMENT element-name EMPTY>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE todo [
+        <!ELEMENT todo EMPTY>
+      ]>
+      <todo />
+- title: "DTD Element: `PCDATA`"
+  desc: |
+        Otherwise known as parsed character data, `PCDATA` is used with `!ELEMENT` declarations to define that the contents of the element is arbitrary text. Tags inside the text will be treated as markup and entities will be expanded. `<` and `&` are still invalid however.
+        ```
+        <!ELEMENT element-name (#PCDATA)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE todo [
+        <!ELEMENT todo (#PCDATA)>
+      ]>
+      <todo>
+        Do some chores...
+      </todo>
+- title: "DTD Element: any content"
+  desc: |
+        Allows any parsable data to be inserted including other elements and text.
+        ```
+        <!ELEMENT element-name ANY>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE todo [
+        <!ELEMENT todo ANY>
+        <!ELEMENT item ANY>
+      ]>
+      <todo>
+        Do some chores...
+        <item>one</item>
+      </todo>
+- title: "DTD Element: sequences"
+  desc: |
+        Allows the use of the specified children elements in the same order as declared in parenthesis. 
+        ```
+        <!ELEMENT element-name (child1,child2,...)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE email [
+        <!ELEMENT email (to,from,subject,body)>
+        <!ELEMENT to (#PCDATA)>
+        <!ELEMENT from (#PCDATA)>
+        <!ELEMENT subject (#PCDATA)>
+        <!ELEMENT body (#PCDATA)>
+      ]>
+      <email>
+      <!-- Try changing the order of an element -->
+        <to>everyone</to>
+        <from>hello@istvan.co</from>
+        <subject>Reminder</subject>
+        <body>
+          Study for the test!
+        </body>
+      </email>
+- title: "DTD Element: occur once"
+  desc: |
+        ```
+        <!ELEMENT element-name (child-name)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue ANY>
+        <!ELEMENT movie ANY>
+        <!ELEMENT release (year)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>The Wizard of Oz</title>
+          <release>
+            <year>1939</year>
+          </release>
+        </movie>
+      </catalogue>
+- title: "DTD Element: occur at least once"
+  desc: |
+        ```
+        <!ELEMENT element-name (child-name+)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie+)>
+        <!ELEMENT movie (title+,release)>
+        <!ELEMENT release (year)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>The Wizard of Oz</title>
+          <release>
+            <year>1939</year>
+          </release>
+        </movie>
+      </catalogue>
+- title: "DTD Element: occur zero or more times"
+  desc: |
+        ```
+        <!ELEMENT element-name (child-name*)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,release)>
+        <!ELEMENT release (year)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue/>
+- title: "DTD Element: occur zero or one time"
+  desc: |
+        ```
+        <!ELEMENT element-name (child-name?)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,release?)>
+        <!ELEMENT release (year)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>Star Wars: Episode IX</title>
+        </movie>
+      </catalogue>
+- title: "DTD Element: either/or"
+  desc: |
+        ```
+        <!ELEMENT element-name (child-a|child-b)>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,(release|release-date)?)>
+        <!ELEMENT release (year)>
+        <!ELEMENT release-date (year)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>The Wizard of Oz</title>
+          <release-date>
+            <year>1939</year>
+          </release-date>
+        </movie>
+      </catalogue>
+- title: "DTD Element: Mixed content"
+  desc: |
+        ```
+        <!ELEMENT element-name (#PCDATA|child-1|child-2,child-n,...)*>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,release-date?)>
+        <!ELEMENT release-date (#PCDATA|year)*>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>Star Wars: Episode IX</title>
+          <release-date>
+            <year>2021</year>
+            (tentative)
+          </release-date>
+        </movie>
+      </catalogue>
+- title: "DTD Attributes"
+  desc: |
+        <h2>Syntax</h2>
+        ```
+        <!ATTLIST element-name attribute-name attribute-type default-value>
+        ```
+        <h2>Attribute name restrictions</h2>
+        <ul>
+          <li>Names must start with an upper or lower case letter, a colon (`:`) or an underscore (`_`).</li>
+          <li>Following the start character, digits (0-9), dashes (`-`) and the dot (`.`) can be used.</li>
+        </ul>
+- title: "DTD Attribute: character data, default value"
+  desc: |
+        ```
+        <!ATTLIST element-name attribute-name CDATA "default">
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,release-date?)>
+        <!ATTLIST movie
+          id CDATA ""
+        >
+        <!ELEMENT release-date (#PCDATA|year)*>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie>
+          <title>Star Wars: Episode VI</title>
+          <release-date>
+            <year>2015</year>
+          </release-date>
+        </movie>
+      </catalogue>
+- title: "DTD Attribute: required, optional or fixed"
+  desc: |
+        An attribute that needs to be set:
+        ```
+        <!ATTLIST element-name attribute-name CDATA #REQUIRED>
+        ```
+        An attribute that is optional:
+        ```
+        <!ATTLIST element-name attribute-name CDATA #IMPLIED>
+        ```
+        An attribute with a preset value that cannot be altered:
+        ```
+        <!ATTLIST element-name attribute-name CDATA #FIXED "value">
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (movie*)>
+        <!ELEMENT movie (title+,release-date?)>
+        <!ATTLIST movie
+          imdb-id CDATA #REQUIRED
+        >
+        <!ELEMENT release-date (#PCDATA|year)*>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>
+      ]>
+      <catalogue>
+        <movie imdb-id="tt2488496">
+          <title>Star Wars: Episode VI</title>
+          <release-date>
+            <year>2015</year>
+          </release-date>
+        </movie>
+      </catalogue>
+- title: "DTD Attribute: enumerated list"
+  desc: |
+        You can define an attribute to only allow the use of one of the predefined values.
+        ```
+        <!ATTLIST element-name attribute-name (value1,value2,...) default-value>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE catalogue [
+        <!ELEMENT catalogue (person*)>
+        <!ELEMENT person (firstname,lastname,dob)>
+        <!ELEMENT firstname (#PCDATA)>
+        <!ELEMENT lastname (#PCDATA)>
+        <!ATTLIST person
+          gender (male|female|unspecified) "unspecified"
+        >
+        <!ELEMENT dob (year,month,day)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT month (#PCDATA)>
+        <!ELEMENT day (#PCDATA)>
+      ]>
+       <catalogue>
+       <!-- Try assigning gender to something that is not in the list -->
+         <person gender="male">
+           <firstname>Bruce</firstname>
+           <lastname>Lee</lastname>
+           <dob>
+             <year>1940</year>
+             <month>11</month>
+             <day>27</day>
+           </dob>
+         </person>
+       </catalogue>
+- title: "DTD Attribute: `ID`"
+  desc: |
+        You can define an attribute to have a unique value. Note that this is similar to the id attribute in HTML: it cannot start with a number! Also note that only one attribute of this type can be used.
+        ```
+        <!ATTLIST element-name attribute-name ID default-value>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE users [
+        <!ELEMENT users (person*)>
+        <!ELEMENT person (firstname,lastname,dob?)>
+        <!ELEMENT firstname (#PCDATA)>
+        <!ELEMENT lastname (#PCDATA)>
+        <!ATTLIST person
+          username ID #REQUIRED
+          gender (male|female|unspecified) "unspecified"
+        >
+        <!ELEMENT dob (year,month,day)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT month (#PCDATA)>
+        <!ELEMENT day (#PCDATA)>
+      ]>
+       <users>
+       <!-- Try assigning id to something that is already in use -->
+         <person username="linux">
+           <firstname>Linus</firstname>
+           <lastname>Torvalds</lastname>
+         </person>
+         <person username="c">
+           <firstname>Dennis</firstname>
+           <lastname>Ritchie</lastname>
+         </person>
+       </users>
+- title: "DTD Attribute: `IDREF`"
+  desc: |
+        You can define an attribute to have the id of another element.
+        ```
+        <!ATTLIST element-name attribute-name IDREF default-value>
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE comments [
+        <!ELEMENT comments (comment*)>
+        <!ELEMENT comment (#PCDATA)>
+        <!ATTLIST comment
+          id ID #REQUIRED
+          username CDATA #REQUIRED
+          parent IDREF #IMPLIED
+        >
+      ]>
+       <comments>
+         <comment id="c1" username="anon">
+           First!
+         </comment>
+         <comment id="c2" username="admin" parent="c1">
+           I banish you!
+         </comment>
+       </comments>
+- title: "DTDs: Entities"
+  desc: |
+        Entities are variables used to define shortcuts to standard text or special characters.
+        ```
+        <!ENTITY entity-name "entity-value">
+        ```
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE article [
+        <!ENTITY writer "Anonymous">
+        <!ENTITY copy "©">
+        <!ENTITY copyright "Copyright &copy; 2013">
+        <!ELEMENT article (title,author,publish-date?,body)>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT author (#PCDATA)>
+        <!ELEMENT publish-date (#PCDATA)>
+        <!ELEMENT body (#PCDATA)>
+      ]>
+       <article>
+         <title>How to make money with SEO</title>
+         <author>&writer;</author>
+         <body>
+         - In progress -
+         &copyright;
+         </body>
+       </article>
+- title: "DTDs: `PCDATA` & `CDATA`"
+  desc: |
+        `PCDATA` and `CDATA` are used to define what is allowed to be used as content inside a element or an attribute, respectively.
+        <h2>`PCDATA`</h2>
+        Otherwise known as parsed character data, `PCDATA` is used with `!ELEMENT` declarations to define that the contents of the element is arbitrary text. Tags inside the text will be treated as markup and entities will be expanded. `<` and `&` are still invalid however.
+        <h2>`CDATA`</h2>
+        Otherwise known as character data, `CDATA` is used with `!ATTLIST` declarations to define that the value of the attribute is arbitrary text. Tags inside the text will NOT be treated as markup and entities will NOT be expanded. `<` and `&` are still invalid however.
+        <h2>`CDATA` section</h2>
+        ```
+        <![CDATA[ arbitrary content here ]]>
+        ```
+        A `CDATA` section allows to insert any arbitrary text including the special characters `<` and `&`... except of course the `]]>` sequence of characters which mark the end of the `CDATA` section.
+  xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE todo [
+        <!ELEMENT todo (item)*>
+        <!ELEMENT item (#PCDATA)>
+        <!ATTLIST item
+            title CDATA #IMPLIED
+        >
+      ]>
+      <todo>
+        <item title="html">
+          <![CDATA[
+            <strong>bolded text</strong>
+          ]]>
+        </item>
+      </todo>
+      
+- title: "XML and stylesheets"
+  desc: |
+        XML elements can be styled using stylesheets. Simply add the following declaration after the DOCTYPE:
+        ```
+        <?xml-stylesheet type="text/css" href="filename.css"?>
+        ```
+        <h2>Example</h2>
+        <ul>
+          <li><a href="books.xml" target="_blank">books.xml</a></li>
+          <li><a href="books.dtd" target="_blank">books.dtd</a></li>
+          <li><a href="books.css" target="_blank">books.css</a></li>
+        </ul>

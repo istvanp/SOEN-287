@@ -1,0 +1,161 @@
+body {
+	color: #333;
+	font-family: 'Open Sans', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Droid Serif', Arial, sans-serif;
+	font-weight: normal;
+}
+a {
+    color: #960;
+}
+a:hover {
+    color: #c90;
+}
+code, pre, #output.pre, #output .source {
+	font-family: Menlo, Monaco, "Lucida Console", "Courier New", monospace;
+}
+code {
+	background: #f3f3f3;
+	padding: 1px 2px;
+}
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+kbd {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    -moz-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 2px 0 rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 2px 0 rgba(0,0,0,0.3);
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 2px 0 rgba(0,0,0,0.3);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block;
+    font: normal 12px sans-serif;
+    padding: 3px 5px;
+    margin: 3px 2px;
+    vertical-align: 10%;
+}
+table {
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+    td, th, caption {
+        border: 2px solid #fff;
+        padding: 5px 10px;
+    }
+    caption {
+    	background: #fc9;
+        font-weight: bold;
+        border-bottom: 0;
+    }
+    tr:nth-of-type(odd),
+    th:nth-of-type(odd) {
+    	background: #ffeedd;
+    }
+    tr:nth-of-type(even) {
+        background: #f7f7f7;
+    }
+#slide-outer {
+}
+#slide-inner {
+	margin: 20px;
+}
+#controls {
+	float: right;
+	margin: 0 20px;
+}
+button {
+	background: #fc9;
+	border: 1px solid #fb8;
+	border-bottom-color: #ea7;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+	color: #630;
+	font: normal 22px 'Open Sans', Arial, sans-serif;
+	padding: 5px 15px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+button:hover {
+	background: #fda;	
+}
+button:active {
+	box-shadow: none;
+	position: relative;
+	top: 2px;
+}
+button[disabled], button[disabled]:hover, button[disabled]:active {
+	background: #eee;
+	border-color: #ddd;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+	color: #ccc;
+	position: static;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+#editor {
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	float: left;
+	font-size: 14px;
+	margin: 0 2% 2% 2%;
+	height: 500px;
+	position: relative;
+	width: 46%;
+}
+#output {
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	float: left;
+    font-family: Arial, sans-serif;
+	margin: 0 0 2% 0;
+	min-height: 44px;
+    padding: 10px;
+	width: 48%;
+}
+#output.pre {
+    white-space: pre;
+	word-wrap: break-word;
+}
+    #output .success {
+        background: #cfc;
+        border: 1px solid #ada;
+        padding: 20px;
+        font-size: 20px;
+        color: #363;
+        margin: 10px;
+        text-align: center;
+    }
+    #output .code {
+        color: #c33;
+    }
+    #output .error {
+        background: #fee;
+        border: 1px solid #daa;
+        padding: 10px;
+        color: #700;
+        margin: 10px;
+    }
+    #output .line, #output .column {
+        font-weight: bold;
+    }
+    #output .source {
+        font-style: italic;
+        margin: 10px 0;
+        white-space: pre;
+    	word-wrap: break-word;        
+    }
+    #output .source span {
+        color: red;
+        font-weight: bold;
+        border-bottom: 2px dotted red;
+    }
+#ajax {
+	background: #eee url(spinner.gif) 4px center no-repeat;
+	border: 1px solid #ddd;
+	padding: 10px 10px 10px 26px;
+	position: absolute;
+	right: 2%;
+}
