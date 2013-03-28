@@ -1,20 +1,27 @@
 jQuery(function() {
-    var slide    = null, data = null, doEval = true, doTest = false,
-        isLocal = /^http:\/\/localhost/.test(window.location.href),
-        previousCode = '', inProgress = false,
-        $content = $('#slide-outer'),
-        $title   = $('#slide-inner h1'),
-        $desc    = $('#slide-inner div'),
-        $editor  = $('#editor');
-        $output  = $('#output');
+    var slide        = null,
+        data         = null,
+        doEval       = true,
+        doTest       = false,
+        inProgress   = false,
+        previousCode = '',
+        scriptURL    = '',
+        isLocal      = /^http:\/\/localhost/.test(window.location.href),
+        REMOTE       = "http://users.encs.concordia.ca/~i_puszta/",
+        PHP_EVAL     = "eval.php",
+        XML_EVAL     = "validate.php",
+        $content     = $('#slide-outer'),
+        $title       = $('#slide-inner h1'),
+        $desc        = $('#slide-inner div'),
+        $editor      = $('#editor');
+        $output      = $('#output');
 
 
     // Set code editor options
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/tomorrow");
-    editor.getSession().setMode("ace/mode/php");
     editor.getSession().setUseWrapMode(true);
-    editor.getSession().setTabSize(2);
+    editor.getSession().setTabSize(4);
     editor.getSession().on('change', function(e) {
         var height = editor.getSession().getScreenLength();
         $editor.height(20 * height + 'px');
@@ -45,7 +52,7 @@ jQuery(function() {
         $("#ajax" ).show();
 
         $.ajax({
-            url: (isLocal) ? 'validate.php' : 'http://users.encs.concordia.ca/~i_puszta/validate.php',
+            url: scriptURL,
             data: { code: code },
             dataType: 'jsonp',
             jsonpCallback: 'callback',
@@ -121,6 +128,7 @@ jQuery(function() {
         if (data[slide - 1]) {
             var title = data[slide - 1].title,
                 desc = data[slide - 1].desc,
+                php = data[slide - 1].php,
                 xml = data[slide - 1].xml,
                 pre = data[slide - 1].pre,
                 output = data[slide - 1].output || '<em>No output available for this slide</em>',
@@ -154,17 +162,31 @@ jQuery(function() {
             
             $title.html(title);
             $desc.html(desc || '');
+            
+            scriptURL = (isLocal) ? '' : REMOTE;
 
-            if ( ! xml) {
-                $editor.hide();
-                $output.hide();
-            }
-            else
-            {
+            if (xml) {
+                scriptURL += XML_EVAL;
+                editor.getSession().setMode("ace/mode/xml");
+                editor.getSession().setTabSize(2);
                 editor.setValue(xml);
                 editor.gotoLine(1);
                 $editor.show();
                 $output.show();
+            }
+            else if (php) {
+                scriptURL += PHP_EVAL;
+                editor.getSession().setMode("ace/mode/php");
+                editor.getSession().setTabSize(4);
+                editor.setValue(php);
+                editor.gotoLine(1);
+                $editor.show();
+                $output.show();
+            }
+            else
+            {
+                $editor.hide();
+                $output.hide();
             }
             
             if (pre === true) {
