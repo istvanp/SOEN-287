@@ -13,20 +13,24 @@ jQuery(function() {
         $content     = $('#slide-outer'),
         $title       = $('#slide-inner h1'),
         $desc        = $('#slide-inner div'),
-        $editor      = $('#editor');
         $output      = $('#output');
 
 
     // Set code editor options
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/tomorrow");
-    editor.getSession().setUseWrapMode(true);
-    editor.getSession().setTabSize(4);
-    editor.getSession().on('change', function(e) {
-        var height = editor.getSession().getScreenLength();
-        $editor.height(20 * height + 'px');
-        editor.resize();
-    });
+    var editors = [ace.edit("editor1"), ace.edit("editor2")];
+
+    for (var i = editors.length - 1; i >= 0; i--)
+    {
+        editors[i].setTheme("ace/theme/tomorrow");
+        editors[i].getSession().setUseWrapMode(true);
+        editors[i].getSession().setTabSize(4);
+        editors[i].getSession().on('change', function(i) {
+            var e = document.getElementById('editor' + (i + 1)),
+                height = editors[i].getSession().getScreenLength();
+            e.style.height = 20 * height + 'px';
+            editors[i].resize();
+        }.bind(this, i));
+    }
 
     $.ajax({
         url: 'data.yml',
@@ -38,22 +42,26 @@ jQuery(function() {
     });
 
     var evaluate = function(testOutput) {
-        if (doEval === false || inProgress) {
+
+        if (doEval === false || inProgress)
+        {
             return;
         }
 
-        var code = editor.getValue();
+        var code1 = editors[0].getValue(),
+            code2 = editors[1].getValue(),
+            code  = code1 + code2;
 
         if ( ! code || code.trim().length === 0 || previousCode === code) {
             return;
         }
 
         inProgress = true;
-        $("#ajax" ).show();
+        $("#ajax").show();
 
         $.ajax({
             url: scriptURL,
-            data: { code: code },
+            data: { code: code1, code2: code2 },
             dataType: 'jsonp',
             jsonpCallback: 'callback',
             success: function(_data) {
@@ -63,7 +71,7 @@ jQuery(function() {
 
                 $output.html(_data);
                 previousCode = code;
-                
+
                 if (testOutput &&
                     testOutput.toString().rtrim() != _data.toString().rtrim()) {
                     alert('Must update output in YAML');
@@ -130,6 +138,7 @@ jQuery(function() {
                 desc = data[slide - 1].desc,
                 php = data[slide - 1].php,
                 xml = data[slide - 1].xml,
+                xsd = data[slide - 1].xsd,
                 pre = data[slide - 1].pre,
                 output = data[slide - 1].output || '<em>No output available for this slide</em>',
                 src,
@@ -159,38 +168,52 @@ jQuery(function() {
                                       '</code>';
                            });
             }
-            
+
             $title.html(title);
             $desc.html(desc || '');
-            
+
             scriptURL = (isLocal) ? '' : REMOTE;
 
             if (xml) {
                 scriptURL += XML_EVAL;
-                editor.getSession().setMode("ace/mode/xml");
-                editor.getSession().setTabSize(2);
-                editor.setValue(xml);
-                editor.gotoLine(1);
-                $editor.show();
+
+
+                if (xsd) {
+                    editors[0].getSession().setMode("ace/mode/xml");
+                    editors[0].getSession().setTabSize(2);
+                    editors[0].setValue(xsd);
+                    editors[0].gotoLine(1);
+                    $("#editor1").removeClass('php').addClass('xsd').show();
+                } else {
+                    $("#editor1").hide();
+                }
+
+                editors[1].getSession().setMode("ace/mode/xml");
+                editors[1].getSession().setTabSize(2);
+                editors[1].setValue(xml);
+                editors[1].gotoLine(1);
+                $("#editor2").removeClass('php').addClass('xml').show();
+
                 $output.show();
             }
             else if (php) {
                 scriptURL += PHP_EVAL;
-                editor.getSession().setMode("ace/mode/php");
-                editor.getSession().setTabSize(4);
-                editor.setValue(php);
-                editor.gotoLine(1);
-                $editor.show();
+                editors[0].getSession().setMode("ace/mode/php");
+                editors[0].getSession().setTabSize(4);
+                editors[0].setValue(php);
+                editors[0].gotoLine(1);
+                $("#editor1").removeClass('xsd').addClass('php').show();
+                $("#editor2").hide();
                 $output.show();
             }
             else
             {
-                $editor.hide();
+                $("#editor1, #editor2").hide();
                 $output.hide();
             }
-            
+
             if (pre === true) {
-                $output.addClass('pre');                
+                $output.addClass('pre');
             } else {
                 $output.removeClass('pre');
             }

@@ -576,21 +576,21 @@
         ```
         A `CDATA` section allows to insert any arbitrary text including the special characters `<` and `&`... except of course the `]]>` sequence of characters which mark the end of the `CDATA` section.
   xml: |
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE todo [
-        <!ELEMENT todo (item)*>
-        <!ELEMENT item (#PCDATA)>
-        <!ATTLIST item
-            title CDATA #IMPLIED
-        >
-      ]>
-      <todo>
-        <item title="html">
-          <![CDATA[
-            <strong>bolded text</strong>
-          ]]>
-        </item>
-      </todo>
+       <?xml version="1.0" encoding="UTF-8"?>
+       <!DOCTYPE todo [
+         <!ELEMENT todo (item)*>
+         <!ELEMENT item (#PCDATA)>
+         <!ATTLIST item
+             title CDATA #IMPLIED
+         >
+       ]>
+       <todo>
+         <item title="html">
+           <![CDATA[
+             <strong>bolded text</strong>
+           ]]>
+         </item>
+       </todo>
       
 - title: "XML and stylesheets"
   desc: |
@@ -702,3 +702,43 @@
 
         # Echo out the final output
         echo htmlspecialchars($writer->outputMemory());
+- title: "XML Schema"
+  desc: |
+        Schemas are like DTDs: they provide structure to XML documents.
+        However, they are much more powerful and, of course, more complex to write as well.
+        <h2>Why use Schemas</h2>
+        <ul>
+          <li>Restrict the values of elements and attributes to specific data types</li>
+          <li>Use regular experssions to check values</li>
+          <li>They can be parsed and created using any XML parser</li>
+          <li>Reference multiple schemas in the same document</li>
+        </ul>
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://encs.concordia.ca"
+                   xmlns="http://encs.concordia.ca"
+                   elementFormDefault="qualified">
+        <xs:element name="email">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="to" type="xs:string"/>
+              <xs:element name="from" type="xs:string"/>
+              <xs:element name="subject" type="xs:string"/>
+              <xs:element name="body" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        </xs:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <email xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca email.xsd">
+         <to>everyone</to>
+         <from>hello@istvan.co</from>
+         <subject>Reminder</subject>
+         <body>
+           Study for the test!
+         </body>
+       </email>

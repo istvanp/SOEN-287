@@ -95,23 +95,54 @@ button[disabled], button[disabled]:hover, button[disabled]:active {
 	position: static;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.05);
 }
-#editor {
+#code-outer {
+    margin: 2%;
+}
+.editor {
 	border: 1px solid #ddd;
-	box-sizing: border-box;
-	float: left;
-	font-size: 14px;
-	margin: 0 2% 2% 2%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+	font-size: 14px !important;
+    margin-bottom: 2%;
+    margin-top: 4%;
 	height: 500px;
-	position: relative;
-	width: 46%;
+	position: relative !important;
+    overflow: visible !important;
+	width: 50%;
+}
+.editor:before, #output:before {
+    background: #fff;
+    color: #999;
+    content: "Code";
+    font-size: 14px;
+    display: block;
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: -24px;
+    padding: 2px 5px;
+    text-transform: uppercase;
+}
+.editor.php:before {
+    content: "PHP";
+}
+.editor.xml:before {
+    content: "XML";
+}
+.editor.xsd:before {
+    content: "XSD";
+}
+#output:before {
+    content: "Output";
 }
 #output {
 	border: 1px solid #ccc;
 	box-sizing: border-box;
-	float: left;
+	float: right;
     font-family: Arial, sans-serif;
-	margin: 0 0 2% 0;
+	margin-bottom: 2%;
 	min-height: 44px;
+    position: relative;
     padding: 10px;
 	width: 48%;
 }

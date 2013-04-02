@@ -6,6 +6,13 @@ ob_start();
 libxml_use_internal_errors(true);
 
 $xmlStr = stripslashes($_GET['code']);
+
+if ( ! empty($_GET['code2']))
+{
+    $xmlStr = stripslashes($_GET['code2']);
+    $xsdStr = stripslashes($_GET['code']);
+}
+
 $xml = explode("\n", $xmlStr);
 $xml[-1] = "No source available for this line.";
 $dom = new DOMDocument();
@@ -20,14 +27,30 @@ if ($dom->loadXML($xmlStr))
 $errors = libxml_get_errors();
 libxml_clear_errors();
 
-if (empty($errors)) {
+if (empty($errors))
+{
     echo '<div class="success">XML is well formed and valid!</div>';
 }
 else if (current($errors)->code == 522)
 {
-    echo '<div class="success">XML is well formed!<br>',
-         '<small>No validation was performed because no DTD was found.</small></div>';
-    $errors = array();
+    if ($xsdStr)
+    {
+        @$dom->schemaValidateSource($xsdStr);
+        
+        $errors = libxml_get_errors();
+        libxml_clear_errors();
+
+        if (empty($errors))
+        {
+            echo '<div class="success">XML is well formed and valid!</div>';
+        }
+    }
+    else
+    {
+        echo '<div class="success">XML is well formed!<br>',
+             '<small>No validation was performed because no DTD was found.</small></div>';
+        $errors = array();
+    }
 }
 
 foreach ($errors as $error) {
