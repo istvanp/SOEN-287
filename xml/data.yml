@@ -450,7 +450,7 @@
   desc: |
         You can define an attribute to only allow the use of one of the predefined values.
         ```
-        <!ATTLIST element-name attribute-name (value1,value2,...) default-value>
+        <!ATTLIST element-name attribute-name (value1|value2|...) default-value>
         ```
   xml: |
       <?xml version="1.0" encoding="UTF-8"?>
@@ -642,7 +642,7 @@
            printf("%s (%s)<br>", $book->title,
                                  $book['category']);
        }
-- title: "Writing an XML file using XMLWriter"
+- title: "Creating an XML file using XMLWriter"
   desc: |
         See below for a simple example.
         <p>
@@ -705,31 +705,31 @@
 - title: "XML Schema"
   desc: |
         Schemas are like DTDs: they provide structure to XML documents.
-        However, they are much more powerful and, of course, more complex to write as well.
-        <h2>Why use Schemas</h2>
+        They are much more powerful but more complex to write.
+        <h2>Why use Schemas over DTDs</h2>
         <ul>
           <li>Restrict the values of elements and attributes to specific data types</li>
           <li>Use regular experssions to check values</li>
-          <li>They can be parsed and created using any XML parser</li>
-          <li>Reference multiple schemas in the same document</li>
+          <li>Schemas can be parsed and created using any XML parser</li>
+          <li>Easily reference multiple schemas in the same document</li>
         </ul>
   xsd: |
         <?xml version="1.0" encoding="UTF-8"?>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                   targetNamespace="http://encs.concordia.ca"
-                   xmlns="http://encs.concordia.ca"
-                   elementFormDefault="qualified">
-        <xs:element name="email">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="to" type="xs:string"/>
-              <xs:element name="from" type="xs:string"/>
-              <xs:element name="subject" type="xs:string"/>
-              <xs:element name="body" type="xs:string"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        </xs:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+        <xsd:element name="email">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="to" type="xsd:string"/>
+              <xsd:element name="from" type="xsd:string"/>
+              <xsd:element name="subject" type="xsd:string"/>
+              <xsd:element name="body" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        </xsd:schema>
   xml: |
        <?xml version="1.0" encoding="UTF-8"?>
        <email xmlns="http://encs.concordia.ca"
@@ -742,3 +742,804 @@
            Study for the test!
          </body>
        </email>
+- title: "The `<schema>` element"
+  desc: |
+        An XML Schema document is really just XML document and hence
+        it obeys all of the rules of XML documents such as defining a root element.
+        That would be `<schema>` for schema documents. A few attributes are
+        usually attached to this root element:
+        <dl>
+          <dt>`xmlns:xsd="http://www.w3.org/2001/XMLSchema"`</dt>
+          <dd>
+            Specifies that the namespace of all `xsd` prefixed elements is
+            `http://www.w3.org/2001/XMLSchema`.<br>
+            Note that the value of this attribute should not be changed or your document won't validate properly.
+            You can however use a different prefix than `xsd` if you wish, just keep in mind that
+            you must be consistent and make the changes accordingly in your xml instances. For example:
+            ```
+        <?xml version="1.0" encoding="UTF-8"?>
+        <x:schema xmlns:x="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://encs.concordia.ca"
+                   xmlns="http://encs.concordia.ca"
+                   elementFormDefault="qualified">
+        <x:element name="email">
+          <x:complexType>
+            <x:sequence>
+              <x:element name="to" type="x:string"/>
+              <x:element name="from" type="x:string"/>
+              <x:element name="subject" type="x:string"/>
+              <x:element name="body" type="x:string"/>
+            </x:sequence>
+          </x:complexType>
+        </x:element>
+        </x:schema>```
+          </dd>
+          <dt>`targetNamespace="http://encs.concordia.ca"`</dt>
+          <dd>
+            Specifies that the namesapce of the defined elements in this schema is
+            `http://encs.concordia.ca`.
+          </dd>
+          <dt>`xmlns="http://encs.concordia.ca"`</dt>
+          <dd>
+            Specifies that the default namespace is `http://encs.concordia.ca`.
+          </dd>
+          <dt>`elementFormDefault="qualified"`</dt>
+          <dd>
+            Specifies that any elements used by an XML instance and defined in this schema,
+            must be namespace qualified.
+          </dd>
+        </dl>
+        <h2>KISS: keep it simple, stupid&trade;</h2>
+        While you can omit the namespaces completely (as shown below), never do it with real projects as you might get unintended collisions as your project grows.
+        <p>
+          <a href="http://www.xfront.com/DefaultNamespace.pdf"
+             target="_blank">Choosing a default namespaces</a><br>
+          <a href="http://www.rpbourret.com/xml/NamespacesFAQ.htm"
+             target="_blank">XML namespace FAQ</a>
+        </p>
+  xsd: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <schema xmlns="http://www.w3.org/2001/XMLSchema">
+       <element name="email">
+         <complexType>
+           <sequence>
+             <element name="to" type="string"/>
+             <element name="from" type="string"/>
+             <element name="subject" type="string"/>
+             <element name="body" type="string"/>
+           </sequence>
+         </complexType>
+       </element>
+       </schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <email>
+         <to>everyone</to>
+         <from>hello@istvan.co</from>
+         <subject>Reminder</subject>
+         <body>
+           Study for the test!
+         </body>
+       </email>
+- title: "XSD Simple Elements"
+  desc: |
+        Simple elements are elements that can only contain text such strings,
+        integers, etc, as defined by the `type` attribute.
+        They cannot contain other elements or attributes.
+        <h2>Element syntax</h2>
+        ```<xsd:element name="element-name" type="data-type"/>```
+        <h2>Data types</h2>
+        <table>
+          <tr>
+            <th>Date type</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>string</td>
+            <td>Arbitrary text</td>
+            <td>foo bar</td>
+          </tr>
+          <tr>
+            <td>integer</td>
+            <td>An integer</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>decimal</td>
+            <td>A number that can be represented as a power of 10</td>
+            <td>-1.23</td>
+          </tr>
+          <tr>
+            <td>float</td>
+            <td>A single-precision floating point number</td>
+            <td>-1E4</td>
+          </tr>
+          <tr>
+            <td>double</td>
+            <td>A double-precision floating point number</td>
+            <td>12.78e-2</td>
+          </tr>
+          <tr>
+            <td>duration</td>
+            <td>Distance of time in the `PnYn MnDTnH nMnS` format</td>
+            <td>P1Y2M3DT10H30M</td>
+          </tr>
+          <tr>
+            <td>dateTime</td>
+            <td>A representation of date and time</td>
+            <td>2002-10-10T12:00:00-05:00</td>
+          </tr>
+          <tr>
+            <td>time</td>
+            <td>A representation of recuring time</td>
+            <td>13:20:00-05:00</td>
+          </tr>
+          <tr>
+            <td>date</td>
+            <td>A representation of a specific date</td>
+            <td>2002-10-10-05:00</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <a href="http://www.w3.org/TR/xmlschema-2/#datatype" target="_blank">
+              See complete list at W3C &raquo;</a></td>
+          </tr>
+        </table>
+        <h2>Default value</h2>
+        To set a default value to an element use the `default` attribute.
+        ```<xsd:element name="element-name" type="data-type" default="default-value"/>```
+        <h2>Fixed value</h2>
+        To set the element to a value that can never be changed, use the `fixed` attribute.
+        ```<xsd:element name="element-name" type="data-type" fixed="fixed-value"/>```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+        <xsd:element name="todo">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="title" type="xsd:string"/>
+              <xsd:element name="date" type="xsd:dateTime"/>
+              <xsd:element name="priority" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <title>Buy milk</title>
+         <date>2013-04-01T09:00:00-05:00</date>
+         <priority>1</priority>
+       </todo>
+- title: "XSD Attributes"
+  desc: |
+        <h2>Attribute syntax</h2>
+        ```<xsd:attribute name="attribute-name" type="data-type"/>```
+        <h2>Default value</h2>
+        To set a default value to an attribute use the `default` attribute.
+        ```<xsd:attribute name="attribute-name" type="data-type" default="default-value"/>```
+        <h2>Fixed value</h2>
+        To set the attribute to a value that can never be changed, use the `fixed` attribute.
+        ```<xsd:attribute name="attribute-name" type="data-type" fixed="fixed-value"/>```
+        <h2>Required attributes</h2>
+        Attributes are optional by default. To require an attribute use the `use` attribute.
+        ```<xsd:attribute name="attribute-name" type="data-type" use="required"/>```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+        <xsd:element name="todo">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="item">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                      <xsd:attribute name="date" type="xsd:dateTime"/>
+                      <xsd:attribute name="priority" type="xsd:integer"/>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <item priority="1"
+               date="2013-04-01T09:00:00-05:00">
+           Buy milk
+         </item>
+       </todo>
+- title: "Occurance"
+  desc: |
+        Using `minOccurs` and `maxOccurs`, you can set how many times an element can be repeated.
+        The defaults are 1 and 1 respectively (occur exactly once).
+
+        To allow unlimited number of occurrences, use `unbounded` as the value.
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <xsd:element name="todo">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="item"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:schema>
+
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <item></item>
+       </todo>
+- title: "Oder: `sequence`"
+  desc: |
+        Sequences allow you to assign a specific order to how elements appear.
+        The `sequence` tag must be wrapped inside a `complexType` tag.
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <xsd:element name="email">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="from"/>
+                <xsd:element name="to"/>
+                <xsd:element name="subject"/>
+                <xsd:element name="body"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:schema>
+
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <email xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <to/>
+         <from/>
+         <subject/>
+         <body/>
+       </email>
+- title: "Order: `choice`"
+  desc: |
+        Choices allow to select one (or more, if `minOccurs` and/or `maxOccurs` are changed) element from a list of candidates.
+        The `choice` tag must be wrapped inside a `complexType` tag.
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <xsd:element name="email">
+            <xsd:complexType>
+              <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="from"/>
+                <xsd:element name="to"/>
+                <xsd:element name="subject"/>
+                <xsd:element name="body"/>
+              </xsd:choice>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <email xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <to/>
+         <from/>
+         <subject/>
+         <body/>
+         <body/><!-- can be repeated! -->
+       </email>
+- title: "Order: `all`"
+  desc: |
+        Unlike the previous example, `all` allows us to use an element from a
+        list only once but in any order.
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <xsd:element name="email">
+            <xsd:complexType>
+              <xsd:all>
+                <xsd:element name="from"/>
+                <xsd:element name="to"/>
+                <xsd:element name="subject"/>
+                <xsd:element name="body"/>
+              </xsd:all>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <email xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <to/>
+         <from/>
+         <subject/>
+         <body/>
+       </email>
+- title: "Empty elements"
+  desc: |
+        ```<xsd:element name="item"/>```
+        <h2>Empty elements with attributes</h2>
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <xsd:element name="todo">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="item">
+                  <xsd:complexType>
+                    <xsd:attribute name="title" type="xsd:string"/>
+                  </xsd:complexType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:schema>
+
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <item title="Buy milk"/>
+       </todo>
+- title: "Facets"
+  desc: |
+        Facets are restrictions applied to values (attributes or an element&apos;s content).
+        <h2>Numeric range</h2>
+        Use `minInclusive` or `minExclusive` and `maxInclusive` or `maxExclusive` to set the lower
+        and upper bound respectively for a number (`integer`, `float`, etc.) based type.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:integer">
+              <xsd:maxInclusive value="1"/>
+              <xsd:maxInclusive value="5"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="priority">
+            <xsd:restriction base="xsd:integer">
+                <xsd:minInclusive value="1"/>
+                <xsd:maxInclusive value="5"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="item">
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:string">
+                <xsd:attribute name="priority" type="priority"/>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="todo">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="item" type="item"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <todo xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <item priority="1">
+           Buy milk
+         </item>
+       </todo>
+- title: "Facets: `decimal` precision"
+  desc: |
+        You can restrict how many digits to the left and to the right of the decimal points for `decimal` data types.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+              <xsd:totalDigits value="12"/>
+              <xsd:fractionDigits value="2"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="balance">
+          <xsd:restriction base="xsd:decimal">
+              <xsd:totalDigits value="12"/>
+              <xsd:fractionDigits value="2"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="user">
+            <xsd:sequence>
+              <xsd:element name="firstname" type="xsd:string"/>
+              <xsd:element name="lastname" type="xsd:string"/>
+              <xsd:element name="balance" type="balance"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer"/>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="directory">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="user" type="user"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <directory xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <user id="1">
+           <firstname>John</firstname>
+           <lastname>Appleseed</lastname>
+           <balance>13.25</balance>
+         </user>
+       </directory>
+- title: "Facets: sets (enumerated values)"
+  desc: |
+        You can create an enumerated set of values for attributes or elements to use.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="male"/>
+              <xsd:enumeration value="female"/>
+              <xsd:enumeration value="unspecified"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="gender">
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="male"/>
+              <xsd:enumeration value="female"/>
+              <xsd:enumeration value="unspecified"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="user">
+            <xsd:sequence>
+              <xsd:element name="firstname" type="xsd:string"/>
+              <xsd:element name="lastname" type="xsd:string"/>
+              <xsd:element name="gender" type="gender"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer"/>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="directory">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="user" type="user"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <directory xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <user id="1">
+           <firstname>Aria</firstname>
+           <lastname>Stark</lastname>
+           <gender>female</gender>
+         </user>
+       </directory>
+- title: "Facets: whitespace"
+  desc: |
+        You can choose remove all white space characters (line feeds, tabs,
+        spaces, carriage returns) by setting the `whiteSpace` to `replace`.
+        If you want to additionally replace multiple spaces, use `collapse`
+        as the value instead. To preserve all whitespace (the default),
+        use `preserve`.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:whiteSpace value="collapse"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="address">
+            <xsd:restriction base="xsd:string">
+              <xsd:whiteSpace value="collapse"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="user">
+            <xsd:sequence>
+              <xsd:element name="firstname" type="xsd:string"/>
+              <xsd:element name="lastname" type="xsd:string"/>
+              <xsd:element name="address" type="address"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer"/>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="directory">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="user" type="user"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <directory xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <user id="1">
+           <firstname>John</firstname>
+           <lastname>Appleseed</lastname>
+           <address>
+             1 Infinite Loop
+             Cupertino, CA
+             USA
+           </address>
+         </user>
+       </directory>
+- title: "Facets: string length"
+  desc: |
+        You can set the `minLength` and `maxLength` of a string or the exact length using `length`.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:minLength value="8"/>
+              <xsd:maxLength value="255"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="password">
+            <xsd:restriction base="xsd:string">
+                <xsd:minLength value="8"/>
+                <xsd:maxLength value="20"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="user">
+            <xsd:sequence>
+              <xsd:element name="username" type="xsd:string"/>
+              <xsd:element name="password" type="password"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer"/>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="directory">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="user" type="user"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <directory xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <user id="1">
+           <username>root</username>
+           <password>qHmA9tlvbUSe9jq6Vg5l</password>
+         </user>
+       </directory>
+- title: "Facets: patterns"
+  desc: |
+        You can limit a value to a regular expression pattern.
+        ```
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:pattern value="[a-z][a-z0-9]{0,31}"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+        ```
+  xsd: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://encs.concordia.ca"
+                    xmlns="http://encs.concordia.ca"
+                    elementFormDefault="qualified">
+          <!-- simple types -->
+          <xsd:simpleType name="username">
+            <xsd:restriction base="xsd:string">
+              <xsd:pattern value="[a-z][a-z0-9]{0,31}"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+          <xsd:simpleType name="password">
+            <xsd:restriction base="xsd:string">
+                <xsd:minLength value="8"/>
+                <xsd:maxLength value="20"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+
+          <!-- complex types -->
+          <xsd:complexType name="user">
+            <xsd:sequence>
+              <xsd:element name="username" type="username"/>
+              <xsd:element name="password" type="password"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer"/>
+          </xsd:complexType>
+
+          <!-- structure -->
+          <xsd:element name="directory">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="user" type="user"
+                             minOccurs="0" maxOccurs="unbounded"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+
+        </xsd:schema>
+  xml: |
+       <?xml version="1.0" encoding="UTF-8"?>
+       <directory xmlns="http://encs.concordia.ca"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://encs.concordia.ca todo.xsd">
+         <user id="1">
+           <username>root</username>
+           <password>qHmA9tlvbUSe9jq6Vg5l</password>
+         </user>
+       </directory>
+- title: "AJAX"
+  desc: |
+        AJAX stands for Asynchronous JavaScript and XML. In a nutshell, AJAX allows you to retrieve information
+        from another page after the current has already loaded.
+        <p>
+          <a href="ajax.html" target="_blank">Full Demo &raquo;</a>
+        </p>
+        <h2>Client (JavaScript)</h2>
+        ```
+        var xhr, query = "my query";
+        if (window.XMLHttpRequest) { // Modern browsers
+            xhr = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { // IE 8 and older
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhr.open('GET', 'ajax.php?q=' + encodeURIComponent(query));
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var xml = xhr.responseXML;
+                    // for text use xhr.responseText
+                    // for JSON use JSON.parse(httpRequest.responseText)
+                }
+                else {
+                  alert('Problem contacting server');
+                }
+            }
+        };
+        xhr.send();
+        ```
+        <h2>Server (ajax.php)</h2>
+        ```
+        <?php
+        # Set the output type to XML
+        header("Content-type: text/xml; charset=utf-8");
+
+        $query = (isset($_GET['q'])) ? $_GET['q'] : '';
+        $xml = simplexml_load_file('library.xml');
+
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->setIndent(true);
+        $writer->setIndentString("  ");
+        $writer->startDocument('1.0', 'UTF-8');
+        $writer->startElement('library');
+
+        # Iterate through document and only keep matches
+        foreach($xml as $book)
+        {   
+            if (stripos($book->title, $query) === FALSE)
+            {
+                continue;
+            }
+            $writer->startElement('book');
+                $writer->startElement('title');
+                    $writer->text($book->title);
+                $writer->endElement();
+                $writer->startElement('author');
+                    $writer->text($book->author);
+                $writer->endElement();
+            $writer->endElement();
+        }
+
+        $writer->endDocument();
+        echo $writer->outputMemory();
+        ```
+        <h2>Data source (library.xml)</h2>
+        <a href="library.xml" target="_blank">library.xml &raquo;</a>
+
+        <h2>Further reading</h2>
+        <p>
+          <a href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started"
+             target="_blank">AJAX at MDN &raquo;</a><br>
+          <a href="http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/"
+             target="_blank">
+          jQuery tutorial &raquo;</a>
+        </p>

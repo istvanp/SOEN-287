@@ -27,7 +27,7 @@ jQuery(function() {
         editors[i].getSession().on('change', function(i) {
             var e = document.getElementById('editor' + (i + 1)),
                 height = editors[i].getSession().getScreenLength();
-            e.style.height = 20 * height + 'px';
+            e.style.height = Math.round(19.2 * height) + 'px';
             editors[i].resize();
         }.bind(this, i));
     }

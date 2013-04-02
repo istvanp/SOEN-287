@@ -85,7 +85,7 @@ function display_xml_error($error, $xml)
     $return .= "<span class=\"message\">" . trim($error->message) . "</span>\n";
     $line = $error->line == 0 ? -1 : $error->line - 1;
     $return .= "<div class=\"source\">" .
-                   highlight($xml[$line], $error->column).
+                   @highlight($xml[$line], $error->column).
                "</div>";
     $return .= "</div>";
 

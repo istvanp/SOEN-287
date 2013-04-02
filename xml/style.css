@@ -60,6 +60,12 @@ table {
     tr:nth-of-type(even) {
         background: #f7f7f7;
     }
+dt, dd {
+    margin-top: 10px;
+}
+dt {
+    font-weight: bold;
+}
 #slide-outer {
 }
 #slide-inner {

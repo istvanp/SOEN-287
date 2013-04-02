@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <title>The Lord of the Rings</title>
+    <author>JRR Tolkien</author>
+  </book>
+  <book>
+    <title>Pride and Prejudice</title>
+    <author>Jane Austen</author>
+  </book>
+  <book>
+    <title>His Dark Materials</title>
+    <author>Philip Pullman</author>
+  </book>
+  <book>
+    <title>The Hitchhiker's Guide to the Galaxy</title>
+    <author>Douglas Adams</author>
+  </book>
+  <book>
+    <title>Harry Potter and the Goblet of Fire</title>
+    <author>JK Rowling</author>
+  </book>
+  <book>
+    <title>To Kill a Mockingbird</title>
+    <author>Harper Lee</author>
+  </book>
+  <book>
+    <title>Winnie the Pooh</title>
+    <author>AA Milne</author>
+  </book>
+  <book>
+    <title>Nineteen Eighty-Four</title>
+    <author>George Orwell</author>
+  </book>
+  <book>
+    <title>The Lion, the Witch and the Wardrobe</title>
+    <author>CS Lewis</author>
+  </book>
+  <book>
+    <title>Jane Eyre</title>
+    <author>Charlotte Brontë</author>
+  </book>
+  <book>
+    <title>Catch-22</title>
+    <author>Joseph Heller</author>
+  </book>
+  <book>
+    <title>Wuthering Heights</title>
+    <author>Emily Brontë</author>
+  </book>
+  <book>
+    <title>Birdsong</title>
+    <author>Sebastian Faulks</author>
+  </book>
+  <book>
+    <title>Rebecca</title>
+    <author>Daphne du Maurier</author>
+  </book>
+  <book>
+    <title>The Catcher in the Rye</title>
+    <author>JD Salinger</author>
+  </book>
+  <book>
+    <title>The Wind in the Willows</title>
+    <author>Kenneth Grahame</author>
+  </book>
+  <book>
+    <title>Great Expectations</title>
+    <author>Charles Dickens</author>
+  </book>
+  <book>
+    <title>Little Women</title>
+    <author>Louisa May Alcott</author>
+  </book>
+  <book>
+    <title>Captain Corelli's Mandolin</title>
+    <author>Louis de Bernieres</author>
+  </book>
+  <book>
+    <title>War and Peace</title>
+    <author>Leo Tolstoy</author>
+  </book>
+  <book>
+    <title>Gone with the Wind</title>
+    <author>Margaret Mitchell</author>
+  </book>
+  <book>
+    <title>Harry Potter And The Philosopher's Stone</title>
+    <author>JK Rowling</author>
+  </book>
+  <book>
+    <title>Harry Potter And The Chamber Of Secrets</title>
+    <author>JK Rowling</author>
+  </book>
+  <book>
+    <title>Harry Potter And The Prisoner Of Azkaban</title>
+    <author>JK Rowling</author>
+  </book>
+  <book>
+    <title>The Hobbit</title>
+    <author>JRR Tolkien</author>
+  </book>
+  <book>
+    <title>Tess Of The D'Urbervilles</title>
+    <author>Thomas Hardy</author>
+  </book>
+  <book>
+    <title>Middlemarch</title>
+    <author>George Eliot</author>
+  </book>
+  <book>
+    <title>A Prayer For Owen Meany</title>
+    <author>John Irving</author>
+  </book>
+  <book>
+    <title>The Grapes Of Wrath</title>
+    <author>John Steinbeck</author>
+  </book>
+  <book>
+    <title>Alice's Adventures In Wonderland</title>
+    <author>Lewis Carroll</author>
+  </book>
+  <book>
+    <title>The Story Of Tracy Beaker</title>
+    <author>Jacqueline Wilson</author>
+  </book>
+  <book>
+    <title>One Hundred Years Of Solitude</title>
+    <author>Gabriel García Márquez</author>
+  </book>
+  <book>
+    <title>The Pillars Of The Earth</title>
+    <author>Ken Follett</author>
+  </book>
+  <book>
+    <title>David Copperfield</title>
+    <author>Charles Dickens</author>
+  </book>
+  <book>
+    <title>Charlie And The Chocolate Factory</title>
+    <author>Roald Dahl</author>
+  </book>
+  <book>
+    <title>Treasure Island</title>
+    <author>Robert Louis Stevenson</author>
+  </book>
+  <book>
+    <title>A Town Like Alice</title>
+    <author>Nevil Shute</author>
+  </book>
+  <book>
+    <title>Persuasion</title>
+    <author>Jane Austen</author>
+  </book>
+  <book>
+    <title>Dune</title>
+    <author>Frank Herbert</author>
+  </book>
+  <book>
+    <title>Emma</title>
+    <author>Jane Austen</author>
+  </book>
+  <book>
+    <title>Anne Of Green Gables</title>
+    <author>LM Montgomery</author>
+  </book>
+  <book>
+    <title>Watership Down</title>
+    <author>Richard Adams</author>
+  </book>
+  <book>
+    <title>The Great Gatsby</title>
+    <author>F Scott Fitzgerald</author>
+  </book>
+  <book>
+    <title>The Count Of Monte Cristo</title>
+    <author>Alexandre Dumas</author>
+  </book>
+  <book>
+    <title>Brideshead Revisited</title>
+    <author>Evelyn Waugh</author>
+  </book>
+  <book>
+    <title>Animal Farm</title>
+    <author>George Orwell</author>
+  </book>
+  <book>
+    <title>A Christmas Carol</title>
+    <author>Charles Dickens</author>
+  </book>
+  <book>
+    <title>Far From The Madding Crowd</title>
+    <author>Thomas Hardy</author>
+  </book>
+  <book>
+    <title>Goodnight Mister Tom</title>
+    <author>Michelle Magorian</author>
+  </book>
+  <book>
+    <title>The Shell Seekers</title>
+    <author>Rosamunde Pilcher</author>
+  </book>
+  <book>
+    <title>The Secret Garden</title>
+    <author>Frances Hodgson Burnett</author>
+  </book>
+  <book>
+    <title>Of Mice And Men</title>
+    <author>John Steinbeck</author>
+  </book>
+  <book>
+    <title>The Stand</title>
+    <author>Stephen King</author>
+  </book>
+  <book>
+    <title>Anna Karenina</title>
+    <author>Leo Tolstoy</author>
+  </book>
+  <book>
+    <title>A Suitable Boy</title>
+    <author>Vikram Seth</author>
+  </book>
+  <book>
+    <title>The BFG</title>
+    <author>Roald Dahl</author>
+  </book>
+  <book>
+    <title>Swallows And Amazons</title>
+    <author>Arthur Ransome</author>
+  </book>
+  <book>
+    <title>Black Beauty</title>
+    <author>Anna Sewell</author>
+  </book>
+  <book>
+    <title>Artemis Fowl</title>
+    <author>Eoin Colfer</author>
+  </book>
+  <book>
+    <title>Crime And Punishment</title>
+    <author>Fyodor Dostoyevsky</author>
+  </book>
+  <book>
+    <title>Noughts And Crosses</title>
+    <author>Malorie Blackman</author>
+  </book>
+  <book>
+    <title>Memoirs Of A Geisha</title>
+    <author>Arthur Golden</author>
+  </book>
+  <book>
+    <title>A Tale Of Two Cities</title>
+    <author>Charles Dickens</author>
+  </book>
+  <book>
+    <title>The Thorn Birds</title>
+    <author>Colleen McCollough</author>
+  </book>
+  <book>
+    <title>Mort</title>
+    <author>Terry Pratchett</author>
+  </book>
+  <book>
+    <title>The Magic Faraway Tree</title>
+    <author>Enid Blyton</author>
+  </book>
+  <book>
+    <title>The Magus</title>
+    <author>John Fowles</author>
+  </book>
+  <book>
+    <title>Good Omens</title>
+    <author>Terry Pratchett and Neil Gaiman</author>
+  </book>
+  <book>
+    <title>Guards! Guards!</title>
+    <author>Terry Pratchett</author>
+  </book>
+  <book>
+    <title>Lord Of The Flies</title>
+    <author>William Golding</author>
+  </book>
+  <book>
+    <title>Perfume</title>
+    <author>Patrick Süskind</author>
+  </book>
+  <book>
+    <title>The Ragged Trousered Philanthropists</title>
+    <author>Robert Tressell</author>
+  </book>
+  <book>
+    <title>Night Watch</title>
+    <author>Terry Pratchett</author>
+  </book>
+  <book>
+    <title>Matilda</title>
+    <author>Roald Dahl</author>
+  </book>
+  <book>
+    <title>Bridget Jones's Diary</title>
+    <author>Helen Fielding</author>
+  </book>
+  <book>
+    <title>The Secret History</title>
+    <author>Donna Tartt</author>
+  </book>
+  <book>
+    <title>The Woman In White</title>
+    <author>Wilkie Collins</author>
+  </book>
+  <book>
+    <title>Ulysses</title>
+    <author>James Joyce</author>
+  </book>
+  <book>
+    <title>Bleak House</title>
+    <author>Charles Dickens</author>
+  </book>
+  <book>
+    <title>Double Act</title>
+    <author>Jacqueline Wilson</author>
+  </book>
+  <book>
+    <title>The Twits</title>
+    <author>Roald Dahl</author>
+  </book>
+  <book>
+    <title>I Capture The Castle</title>
+    <author>Dodie Smith</author>
+  </book>
+  <book>
+    <title>Holes</title>
+    <author>Louis Sachar</author>
+  </book>
+  <book>
+    <title>Gormenghast</title>
+    <author>Mervyn Peake</author>
+  </book>
+  <book>
+    <title>The God Of Small Things</title>
+    <author>Arundhati Roy</author>
+  </book>
+  <book>
+    <title>Vicky Angel</title>
+    <author>Jacqueline Wilson</author>
+  </book>
+  <book>
+    <title>Brave New World</title>
+    <author>Aldous Huxley</author>
+  </book>
+  <book>
+    <title>Cold Comfort Farm</title>
+    <author>Stella Gibbons</author>
+  </book>
+  <book>
+    <title>Magician</title>
+    <author>Raymond E Feist</author>
+  </book>
+  <book>
+    <title>On The Road</title>
+    <author>Jack Kerouac</author>
+  </book>
+  <book>
+    <title>The Godfather</title>
+    <author>Mario Puzo</author>
+  </book>
+  <book>
+    <title>The Clan Of The Cave Bear</title>
+    <author>Jean M Auel</author>
+  </book>
+  <book>
+    <title>The Colour Of Magic</title>
+    <author>Terry Pratchett</author>
+  </book>
+  <book>
+    <title>The Alchemist</title>
+    <author>Paulo Coelho</author>
+  </book>
+  <book>
+    <title>Katherine</title>
+    <author>Anya Seton</author>
+  </book>
+  <book>
+    <title>Kane And Abel</title>
+    <author>Jeffrey Archer</author>
+  </book>
+  <book>
+    <title>Love In The Time Of Cholera</title>
+    <author>Gabriel García Márquez</author>
+  </book>
+  <book>
+    <title>Girls In Love</title>
+    <author>Jacqueline Wilson</author>
+  </book>
+  <book>
+    <title>The Princess Diaries</title>
+    <author>Meg Cabot</author>
+  </book>
+  <book>
+    <title>Midnight's Children</title>
+    <author>Salman Rushdie</author>
+  </book>
+</library>

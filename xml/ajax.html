@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Tutorial</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700'>
+    <style>
+        body {
+            font: 14px 'Open Sans', Arial, sans-serif;
+            margin: 20px;
+        }
+        h1,h2 {
+            font-family: 'Droid Serif', Arial, sans-serif;
+        }
+        dt span {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Top 100 books</h1>
+    <label>
+        Book title
+        <form>
+            <input type="text"/>
+            <input type="submit" value="search" onclick="return ajax()"/>
+        </form>
+    </label>
+    <div id="books"></div>
+<script>
+var output = document.getElementById('books'),
+    form   = document.forms[0];
+function ajax() {
+    var xhr;
+    if (window.XMLHttpRequest) { // Modern browsers
+        xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) { // IE 8 and older
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhr.open('GET', 'ajax.php?q=' + encodeURIComponent(form[0].value));
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                parse(xhr.responseXML);
+            }
+            else {
+              alert('Problem contacting server');
+            }
+        }
+    };
+    xhr.send();
+    return false;
+}
+function parse(xml) {
+    var books = xml.getElementsByTagName('book');
+
+    if (books.length == 0) {
+        output.innerHTML = "<p>No results. Try a broader search.</p>";
+        return;
+    }
+
+    output.innerHTML = "<dl>";
+    for (var i = 0; i < books.length; i++) {
+        var children = books.item(i),
+            title = children.getElementsByTagName('title'),
+            author = children.getElementsByTagName('author');
+        title = title.item(0).childNodes[0].nodeValue;
+        author = author.item(0).childNodes[0].nodeValue;
+        output.innerHTML += "<dt><span>" + title + "</span> by " + author + "</dt>";
+    }
+    output.innerHTML += "</dl>";
+}
+</script>
+</body>
+</html>
