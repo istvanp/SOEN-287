@@ -1471,7 +1471,7 @@
         AJAX stands for Asynchronous JavaScript and XML. In a nutshell, AJAX allows you to retrieve information
         from another page after the current has already loaded.
         <p>
-          <a href="ajax.html" target="_blank">Full Demo &raquo;</a>
+          <a href="http://users.encs.concordia.ca/~i_puszta/ajax.html" target="_blank">Full Demo &raquo;</a>
         </p>
         <h2>Client (JavaScript)</h2>
         ```
@@ -1496,7 +1496,8 @@
         };
         xhr.send();
         ```
-        <h2>Server (ajax.php)</h2>
+        <h2>Server</h2>
+        <a href="http://users.encs.concordia.ca/~i_puszta/ajax.php" target="_blank">ajax.php &raquo;</a>
         ```
         <?php
         # Set the output type to XML
