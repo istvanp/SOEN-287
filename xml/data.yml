@@ -1469,7 +1469,7 @@
 - title: "AJAX"
   desc: |
         AJAX stands for Asynchronous JavaScript and XML. In a nutshell, AJAX allows you to retrieve information
-        from another page after the current has already loaded.
+        from another page after the current page has already loaded.
         <p>
           <a href="http://users.encs.concordia.ca/~i_puszta/ajax.html" target="_blank">Full Demo &raquo;</a>
         </p>
