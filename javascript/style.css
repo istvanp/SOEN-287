@@ -18,6 +18,7 @@ a {
     top: 0;
 }
 #right {
+    background: #321;
     bottom: 0;
     left: 55%;
     position: absolute;
