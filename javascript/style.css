@@ -9,7 +9,6 @@ a {
     text-decoration: underline;
 }
 #editor {
-    background: #222;
     bottom: 0;
     border: 0;
     font: normal 16px 'Menlo', monospace;
